@@ -13,6 +13,7 @@
                 get-class="left user"
                 :indexActualUserPoke="indexActualUserPoke"
                 :userPokemon="userPokemon"
+                :ball="ball"
             />
 
             <div class="menu">
@@ -35,7 +36,12 @@ export default {
     methods: {
        changePokemon(index){
            console.log('change poke in menu',index);
-           this.indexActualUserPoke = index;
+           this.ball=true;
+           this.indexActualUserPoke = -1;
+           setTimeout(() => {
+               this.indexActualUserPoke = index;
+               this.ball=false;
+           }, 1700);
        },
     },
     props: {
@@ -48,8 +54,9 @@ export default {
         return{
             userPokemon: pokeFile.pokemon,
             enemyPokemon: pokeFile.enemypokemon,
-            indexActualUserPoke: 0,
+            indexActualUserPoke: -1,
             indexActualEnemyPoke: 1,
+            ball: false,
         }
     }
 }

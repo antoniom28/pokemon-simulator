@@ -4,12 +4,13 @@
             <span @click="turnBack()" class="turn-back">BACK</span>
             <ul>
                 <li 
+                    @click="getMove(move,index)"
                     @mouseenter="getMoveInfo(index)" 
                     v-for="(move,index) in userPokemon.moveSet" 
                     :key="index" class="move"
                     :class="move.color"
                 >
-                    <span @click="getMove(move,index)">
+                    <span>
                         {{move.name}}
                     </span>
                 </li>

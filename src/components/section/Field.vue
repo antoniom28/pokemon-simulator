@@ -4,12 +4,13 @@
     <span :class="getClass"> 
         <img
             :class="getClass"
-            v-if="enemyPokemon[indexActualEnemyPoke].thumb != null"
+            v-if="indexActualEnemyPoke >= 0"
             :src="getEnemyThumb"
         alt=""
       />
     </span>
     <PokeInfo 
+        v-if="indexActualEnemyPoke >= 0"
         :indexPoke="indexActualEnemyPoke"
         :poke="enemyPokemon"
         getClass="left enemy"
@@ -17,24 +18,25 @@
     <div class="field-terrain" :class="getClass"></div>
   </div>
 
-  <div v-else class="field">
+  <div v-else class="field"> <!-- LEFT USER -->
     <span :class="getClass">
       <img
         :class="getClass"
-        v-if="userPokemon[indexActualUserPoke].thumb != null"
+        v-if="indexActualUserPoke >= 0"
         :src="getThumb"
         alt=""
       />
-      <span v-else>
-        {{ userPokemon[indexActualUserPoke].name }}
-      </span>
     </span>
 
     <PokeInfo 
+        v-if="indexActualUserPoke >= 0"
         :indexPoke="indexActualUserPoke"
         :poke="userPokemon"
         getClass="right user"
     />
+    <div v-if="ball" class="ball">
+      <img src="../../assets/img/ball.png" alt="">
+    </div>
 
     <div class="field-terrain" :class="getClass"></div>
   </div>
@@ -57,6 +59,7 @@ export default {
     indexActualUserPoke: Number,
     enemyPokemon: Array,
     indexActualEnemyPoke: Number,
+    ball: Boolean,
   },
   methods: {},
   computed: {
@@ -78,6 +81,80 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../assets/style/partials/variables.scss";
+.ball{
+  position: absolute;
+  top: 70px;
+  left: -50px;
+  animation: throw 1.5s linear forwards; 
+  z-index: 9999;
+  
+  img{
+    width: 40px;
+  }
+}
+
+@keyframes throw {
+  0%{
+    transform: rotate(0deg);
+    top: 70px;
+    left: -50px;
+  }
+  10%{
+    transform: rotate(90deg);
+    top: 75px;
+    left: -27.5px;
+  }
+  20%{
+    transform: rotate(180deg);
+    top: 80px;
+    left: -5px;
+  }
+  30%{
+    transform: rotate(270deg);
+    top: 85px;
+    left: 17.5px;
+  }
+  40%{
+    transform: rotate(330deg);
+    top: 90px;
+    left: 40px;
+  }
+  50%{
+    top: 110px;
+    left: 62.5x;
+    transform: rotate(360deg);
+  }
+  55%{
+      top: 90px;
+      transform: rotate(540deg);
+  }
+  60%{
+    top: 110px;
+    transform: rotate(720deg);
+    left: 85px;
+  }
+  70%{
+      top: 100px;
+      transform: rotate(900deg);
+    left: 107.5x;
+  }
+  80%{
+    top: 110px;
+    left: 130px;
+    transform: rotate(1080deg);
+  }
+  90%{
+    left: 152.5px;
+    transform: rotate(1260deg);
+  }
+  100%{
+    transform: rotate(1440deg);
+    top: 110px;
+    left: 185px;
+  }
+}
+
+
 img {
   width: 100px;
 }

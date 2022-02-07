@@ -22,7 +22,8 @@
             </div>
         </div>
         <div v-else class="confirm">
-            <div class="turn-back" @click="turnBack" >BACK</div>
+            <div v-if="indexActualPoke >=0" class="turn-back" @click="turnBack" >BACK</div>
+            <div v-else>SCEGLI UN <br> POKèMON</div>
         </div>
     </div>
 </template>
@@ -38,6 +39,7 @@ export default {
     },
     props: {
         allPokemon: Array,
+        indexActualPoke: Number,
     },
     methods: {
         getPokemon(index){

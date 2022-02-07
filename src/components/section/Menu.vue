@@ -17,6 +17,7 @@
         :allPokemon="userPokemon"
         @turnBack="turnBack"
         @changePoke="changePoke"
+        :indexActualPoke="indexActualPoke"
         v-if="menuOpt == 2"
       />
     </div>
@@ -36,8 +37,8 @@ export default {
     },
     data(){
         return{
-            menuOpt: -1,
-            indexActualPoke: 0,
+            menuOpt: 2,
+            indexActualPoke: -1,
         }
     },
     props: {
