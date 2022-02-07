@@ -34,7 +34,10 @@ export default {
     methods: {
         getMove(move,index){
             if(index != -1)
-                move.pp--;
+                if(move.pp == 0)
+                    move.pp = move.pp;
+                else
+                    move.pp--;
             console.log(move);
             //this.$emit('',index);
         },

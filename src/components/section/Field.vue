@@ -20,8 +20,8 @@
                 {{userPokemon[indexActualUserPoke].name}}
             </span>
         </span>
-        <div class="field-terrain" :class="getClass">
-        </div>
+        <div class="status-poke">ciao</div>
+        <div class="field-terrain" :class="getClass"></div>
     </div>
 </template>
 
@@ -88,5 +88,14 @@ span{
         left: unset;
         right: 190px;
     }
+}
+
+.status-poke{
+    height: 120px;
+    width: 400px;
+    background-color: rgb(177, 177, 177);
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 </style>
