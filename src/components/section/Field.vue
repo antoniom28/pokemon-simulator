@@ -12,6 +12,7 @@
         <!-- <img src="../../assets/img/.png" alt=""> -->
         <span :class="getClass">
             <img 
+                :class="getClass"
                 v-if="userPokemon[indexActualUserPoke].thumb != null"
                 :src="getThumb" alt=""
             >
@@ -38,7 +39,7 @@ export default {
     methods: {},
     computed: {
         getThumb(){
-            let image = require(`../../assets/img/${this.userPokemon[this.indexActualUserPoke].thumb}`);
+            let image = require(`../../assets/img/poke-img/${this.userPokemon[this.indexActualUserPoke].thumb}`);
             return image;
         },
     },
@@ -50,8 +51,14 @@ export default {
 img{
     width: 100px;
 }
+
+img.left{
+    width: 150px;
+}
 .field{
     position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .field-terrain{
@@ -71,11 +78,13 @@ img{
 }
 span{    
     position: absolute;
-    top: 0;
-    left: 170px;
+    bottom: 146px;
+    left: 120px;
     z-index: 9999;
 
     &.right{
+        bottom: unset;
+        top: 0;
         left: unset;
         right: 190px;
     }

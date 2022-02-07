@@ -1,8 +1,8 @@
 {
     "pokemon": [
         {
-            "name": "Cataldo",
-            "thumb": null,
+            "name": "Leaf Dog",
+            "thumb": "leafDog_user.png",
             "moveSet": [
                 {
                     "name": "leaf",
@@ -32,8 +32,8 @@
             "hp": 100
         },
         {
-            "name": "Pidgey",
-            "thumb": null,
+            "name": "MagmaLion",
+            "thumb": "Magmalion_user.png",
             "moveSet": [
                 {
                     "name": "volo",
@@ -63,8 +63,8 @@
             "hp": 120
         },
         {
-            "name": "Briciola",
-            "thumb": "brici2.png",
+            "name": "MagikarpO",
+            "thumb": "Magikarp_user.png",
             "moveSet": [
                 {
                     "name": "MORZO",
