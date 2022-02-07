@@ -97,7 +97,7 @@ ul{
     align-items: center;
 
     span{
-        background-color: gray;
+        background-color: rgb(156, 53, 53);
         color: white;
         width: 50px;
         height: 50px;
@@ -110,7 +110,7 @@ ul{
 
 .turn-back{
         cursor: pointer;
-        background-color: gray;
+        background-color: $bg_main_color;
         color: white;
         padding: 50px;
 }

@@ -56,6 +56,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/style/partials/variables.scss';
+
 .turn-back{
     cursor: pointer;
     position: absolute;
@@ -66,7 +67,7 @@ export default {
 .move-set{
     width: 70%;
     height: 100%;
-    background-color: skyblue;
+    background-color: $bg_2_color;
     border: 3px double black;
     position: relative;
 

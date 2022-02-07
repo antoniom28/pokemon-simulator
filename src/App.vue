@@ -11,8 +11,8 @@
 <script>
 //import axios from "axios";
 import Main from "./components/macro/Main.vue";
-import Footer from "./components/macro/Footer.vue";
-import Header from "./components/macro/Header.vue";
+//import Footer from "./components/macro/Footer.vue";
+//import Header from "./components/macro/Header.vue";
 
 export default {
   name: "App",
@@ -24,8 +24,8 @@ export default {
   },
   components: {
     Main,
-    Footer,
-    Header,
+    //Footer,
+    //Header,
   },
 };
 </script>

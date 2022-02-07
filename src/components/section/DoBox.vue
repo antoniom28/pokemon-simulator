@@ -38,13 +38,17 @@ export default {
 .do-box{
     width: 39%;
     height: 100%;
-    background-color: rgb(235, 235, 235);
+    background-color: &bg_2_color;
+    padding: 10px;
+    box-shadow: 
+        inset 0 0 0 6px rgb(107, 107, 107),
+        0 0 0 2px yellow,
+        0 0 0 4px black ;
 }
 
 .action{
     width: 59%;
     height: 100%;
-    background-color: skyblue;
 
     ul{
         width: 100%;
