@@ -1,11 +1,11 @@
 <template>
-    <div class="status-poke">
-      <div class="info">
+    <div class="status-poke" :class="getClass">
+      <div class="info" :class="getClass">
         <div class="name">
-            <span>{{ userPokemon[indexActualUserPoke].name }}</span>
-            <span>{{ userPokemon[indexActualUserPoke].gender }}</span>
+            <span>{{ poke[indexPoke].name }}</span>
+            <span>{{ poke[indexPoke].gender }}</span>
         </div>
-        <span>Lv{{ userPokemon[indexActualUserPoke].lv }}</span>
+        <span>Lv{{ poke[indexPoke].lv }}</span>
       </div>
       <div class="hp-bar">
         <div class="bar">
@@ -14,8 +14,8 @@
         </div>
       </div>
       <div class="hp">
-        {{ userPokemon[indexActualUserPoke].hp }} /
-        {{ userPokemon[indexActualUserPoke].maxHp }}
+        {{ poke[indexPoke].hp }} /
+        {{ poke[indexPoke].maxHp }}
       </div>
     </div>
 </template>
@@ -27,8 +27,9 @@ export default {
         return{}
     },
     props: {
-        indexActualUserPoke: Number,
-        userPokemon: Array,
+        indexPoke: Number,
+        poke: Array,
+        getClass: String,
     },
     methods: {},
 }
@@ -39,10 +40,18 @@ export default {
 .status-poke {
   height: 120px;
   width: 400px;
+  border-top-left-radius: 20px;
   background-color: rgb(196, 196, 196);
   position: absolute;
   top: 0;
-  right: 0;
+  left: 400px;
+
+  &.left{
+    left: unset;
+    right: 400px;
+    border-top-left-radius: unset;
+    border-top-right-radius: 20px;
+  }
 
   span {
     position: static;
@@ -51,11 +60,17 @@ export default {
   .info {
     height: 40%;
     width: 100%;
+    border-top-left-radius: 20px;
     display: flex;
     justify-content: space-between;
     padding: 0 25px;
     align-items: center;
     background-color: rgb(226, 226, 226);
+
+    &.left{
+        border-top-left-radius: unset;
+        border-top-right-radius: 20px;
+    }
 
     .name{
         min-width: 200px;

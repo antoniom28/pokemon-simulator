@@ -1,12 +1,23 @@
 <template>
-  <div v-if="getClass == 'right'" id="" class="field">
-    <!-- <img src="../../assets/img/.png" alt=""> -->
-    <span :class="getClass"> enemy </span>
+
+  <div v-if="getClass == 'right enemy'" class="field">
+    <span :class="getClass"> 
+        <img
+            :class="getClass"
+            v-if="enemyPokemon[indexActualEnemyPoke].thumb != null"
+            :src="getEnemyThumb"
+        alt=""
+      />
+    </span>
+    <PokeInfo 
+        :indexPoke="indexActualEnemyPoke"
+        :poke="enemyPokemon"
+        getClass="left enemy"
+    />
     <div class="field-terrain" :class="getClass"></div>
   </div>
 
-  <div v-else id="" class="field">
-    <!-- <img src="../../assets/img/.png" alt=""> -->
+  <div v-else class="field">
     <span :class="getClass">
       <img
         :class="getClass"
@@ -20,8 +31,9 @@
     </span>
 
     <PokeInfo 
-        :indexActualUserPoke="indexActualUserPoke"
-        :userPokemon="userPokemon"
+        :indexPoke="indexActualUserPoke"
+        :poke="userPokemon"
+        getClass="right user"
     />
 
     <div class="field-terrain" :class="getClass"></div>
@@ -41,14 +53,22 @@ export default {
   },
   props: {
     getClass: String,
-    indexActualUserPoke: Number,
     userPokemon: Array,
+    indexActualUserPoke: Number,
+    enemyPokemon: Array,
+    indexActualEnemyPoke: Number,
   },
   methods: {},
   computed: {
     getThumb() {
       let image = require(`../../assets/img/poke-img/${
         this.userPokemon[this.indexActualUserPoke].thumb
+      }`);
+      return image;
+    },
+    getEnemyThumb() {
+      let image = require(`../../assets/img/poke-img/${
+        this.enemyPokemon[this.indexActualEnemyPoke].thumb
       }`);
       return image;
     },
@@ -65,6 +85,12 @@ img {
 img.left {
   width: 130px;
 }
+
+img.right {
+  width: 110px;
+}
+
+
 .field {
   position: relative;
   width: 100%;
@@ -95,9 +121,9 @@ span {
 
   &.right {
     bottom: unset;
-    top: 0;
+    top: 50px;
     left: unset;
-    right: 190px;
+    right: 150px;
   }
 }
 </style>

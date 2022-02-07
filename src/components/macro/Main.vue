@@ -2,15 +2,15 @@
     <main class="container">
         <div class="enemy-field">
             <Field 
-                get-class="right"
-                :indexActualUserPoke="indexActualUserPoke"
-                :userPokemon="userPokemon"
+                get-class="right enemy"
+                :indexActualEnemyPoke="indexActualEnemyPoke"
+                :enemyPokemon="enemyPokemon"
             />
         </div>
 
         <div class="user-field">
             <Field 
-                get-class="left"
+                get-class="left user"
                 :indexActualUserPoke="indexActualUserPoke"
                 :userPokemon="userPokemon"
             />
@@ -28,7 +28,7 @@
 <script>
 import Field from '../section/Field.vue'
 import Menu from '../section/Menu.vue'
-import userPokemon from '../../assets/data/userPokemon.json'
+import pokeFile from '../../assets/data/pokeFile.json'
 
 export default {
     name: 'Main',
@@ -46,9 +46,10 @@ export default {
     },
     data(){
         return{
-            userPokemon: userPokemon.pokemon,
-            enemyPokemon: ['peppe','francoDino'],
+            userPokemon: pokeFile.pokemon,
+            enemyPokemon: pokeFile.enemypokemon,
             indexActualUserPoke: 0,
+            indexActualEnemyPoke: 1,
         }
     }
 }
