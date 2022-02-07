@@ -53,7 +53,7 @@ img{
 }
 
 img.left{
-    width: 150px;
+    width: 130px;
 }
 .field{
     position: relative;
@@ -66,7 +66,7 @@ img.left{
     height: 300px;
     background-color: yellow;
     border-radius: 50%;
-    transform: rotateX(65deg);
+    transform: rotateX(70deg);
     position: absolute;
     top: 0;
     left: 0;
@@ -79,7 +79,7 @@ img.left{
 span{    
     position: absolute;
     bottom: 146px;
-    left: 120px;
+    left: 130px;
     z-index: 9999;
 
     &.right{

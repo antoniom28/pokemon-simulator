@@ -94,8 +94,8 @@
             "hp": 200
         },
         {
-            "name": "Lello",
-            "thumb": null,
+            "name": "Volpyre",
+            "thumb": "Volpyre_user.png",
             "moveSet": [
                 {
                     "name": "leaf",
@@ -125,8 +125,8 @@
             "hp": 200
         },
         {
-            "name": "Blastoise",
-            "thumb": null,
+            "name": "Strisciapedo",
+            "thumb": "Strisciapedo_user.png",
             "moveSet": [
                 {
                     "name": "leaf",
@@ -156,8 +156,8 @@
             "hp": 200
         },
         {
-            "name": "Pikachu",
-            "thumb": null,
+            "name": "E la mad",
+            "thumb": "elamad_user.png",
             "moveSet": [
                 {
                     "name": "leaf",
