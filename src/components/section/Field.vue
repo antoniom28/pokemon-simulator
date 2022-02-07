@@ -1,101 +1,103 @@
 <template>
-    <div v-if="getClass == 'right'" id="" class="field">
-        <!-- <img src="../../assets/img/.png" alt=""> -->
-        <span :class="getClass">
-            enemy
-        </span>
-        <div class="field-terrain" :class="getClass">
-        </div>
-    </div>
+  <div v-if="getClass == 'right'" id="" class="field">
+    <!-- <img src="../../assets/img/.png" alt=""> -->
+    <span :class="getClass"> enemy </span>
+    <div class="field-terrain" :class="getClass"></div>
+  </div>
 
-    <div v-else id="" class="field">
-        <!-- <img src="../../assets/img/.png" alt=""> -->
-        <span :class="getClass">
-            <img 
-                :class="getClass"
-                v-if="userPokemon[indexActualUserPoke].thumb != null"
-                :src="getThumb" alt=""
-            >
-            <span v-else>
-                {{userPokemon[indexActualUserPoke].name}}
-            </span>
-        </span>
-        <div class="status-poke">ciao</div>
-        <div class="field-terrain" :class="getClass"></div>
-    </div>
+  <div v-else id="" class="field">
+    <!-- <img src="../../assets/img/.png" alt=""> -->
+    <span :class="getClass">
+      <img
+        :class="getClass"
+        v-if="userPokemon[indexActualUserPoke].thumb != null"
+        :src="getThumb"
+        alt=""
+      />
+      <span v-else>
+        {{ userPokemon[indexActualUserPoke].name }}
+      </span>
+    </span>
+
+    <PokeInfo 
+        :indexActualUserPoke="indexActualUserPoke"
+        :userPokemon="userPokemon"
+    />
+
+    <div class="field-terrain" :class="getClass"></div>
+  </div>
 </template>
 
 <script>
+import PokeInfo from '../common/PokeInfo.vue'
+
 export default {
-    name: "Field",
-    data(){
-        return{}
+  name: "Field",
+  components: {
+      PokeInfo,
+  },
+  data() {
+    return {};
+  },
+  props: {
+    getClass: String,
+    indexActualUserPoke: Number,
+    userPokemon: Array,
+  },
+  methods: {},
+  computed: {
+    getThumb() {
+      let image = require(`../../assets/img/poke-img/${
+        this.userPokemon[this.indexActualUserPoke].thumb
+      }`);
+      return image;
     },
-    props: {
-        getClass: String,
-        indexActualUserPoke: Number ,
-        userPokemon: Array ,
-    },
-    methods: {},
-    computed: {
-        getThumb(){
-            let image = require(`../../assets/img/poke-img/${this.userPokemon[this.indexActualUserPoke].thumb}`);
-            return image;
-        },
-    },
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/style/partials/variables.scss';
-img{
-    width: 100px;
+@import "../../assets/style/partials/variables.scss";
+img {
+  width: 100px;
 }
 
-img.left{
-    width: 130px;
+img.left {
+  width: 130px;
 }
-.field{
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.field-terrain{
-    width: 400px;
-    height: 300px;
-    background-color: yellow;
-    border-radius: 50%;
-    transform: rotateX(70deg);
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    &.right{
-        right: 0;
-        left: unset;
-    }
-}
-span{    
-    position: absolute;
-    bottom: 146px;
-    left: 130px;
-    z-index: 9999;
-
-    &.right{
-        bottom: unset;
-        top: 0;
-        left: unset;
-        right: 190px;
-    }
+.field {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.status-poke{
-    height: 120px;
-    width: 400px;
-    background-color: rgb(177, 177, 177);
-    position: absolute;
-    top: 0;
+.field-terrain {
+  width: 400px;
+  height: 300px;
+  background-color: yellow;
+  border-radius: 50%;
+  transform: rotateX(70deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  &.right {
     right: 0;
+    left: unset;
+  }
+}
+
+span {
+  position: absolute;
+  bottom: 146px;
+  left: 130px;
+  z-index: 9999;
+
+  &.right {
+    bottom: unset;
+    top: 0;
+    left: unset;
+    right: 190px;
+  }
 }
 </style>

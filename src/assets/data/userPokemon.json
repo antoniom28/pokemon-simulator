@@ -3,6 +3,10 @@
         {
             "name": "Leaf Dog",
             "thumb": "leafDog_user.png",
+            "lv": 42,
+            "hp": 100,
+            "maxHp": 100,
+            "gender": "F",
             "moveSet": [
                 {
                     "name": "leaf",
@@ -28,12 +32,15 @@
                     "totpp": 10,
                     "type": "Normal/Flame"
                 }
-            ],
-            "hp": 100
+            ]
         },
         {
             "name": "MagmaLion",
             "thumb": "Magmalion_user.png",
+            "lv": 16,
+            "hp": 120,
+            "maxHp": 120,
+            "gender": "F",
             "moveSet": [
                 {
                     "name": "volo",
@@ -59,12 +66,15 @@
                     "totpp": 10,
                     "type": "Normal/Flame"
                 }
-            ],
-            "hp": 120
+            ]
         },
         {
             "name": "MagikarpO",
             "thumb": "Magikarp_user.png",
+            "lv": 67,
+            "hp": 200,
+            "maxHp": 200,
+            "gender": "M",
             "moveSet": [
                 {
                     "name": "MORZO",
@@ -90,12 +100,15 @@
                     "totpp": 10,
                     "type": "Normal/Flame"
                 }
-            ],
-            "hp": 200
+            ]
         },
         {
             "name": "Volpyre",
             "thumb": "Volpyre_user.png",
+            "lv": 12,
+            "hp": 300,
+            "maxHp": 300,
+            "gender": "M",
             "moveSet": [
                 {
                     "name": "leaf",
@@ -121,12 +134,15 @@
                     "totpp": 10,
                     "type": "Normal/Flame"
                 }
-            ],
-            "hp": 200
+            ]
         },
         {
             "name": "Strisciapedo",
             "thumb": "Strisciapedo_user.png",
+            "lv": 32,
+            "hp": 160,
+            "maxHp": 160,
+            "gender": "F",
             "moveSet": [
                 {
                     "name": "leaf",
@@ -152,12 +168,15 @@
                     "totpp": 10,
                     "type": "Normal/Flame"
                 }
-            ],
-            "hp": 200
+            ]
         },
         {
             "name": "E la mad",
             "thumb": "elamad_user.png",
+            "lv": 100,
+            "hp": 450,
+            "maxHp": 450,
+            "gender": "M",
             "moveSet": [
                 {
                     "name": "leaf",
@@ -183,8 +202,7 @@
                     "totpp": 10,
                     "type": "Normal/Flame"
                 }
-            ],
-            "hp": 200
+            ]
         }
     ]
 }
