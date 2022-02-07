@@ -41,7 +41,7 @@ export default {
   height: 120px;
   width: 400px;
   border-top-left-radius: 20px;
-  background-color: rgb(196, 196, 196);
+  background-color: $bg_main_color;
   position: absolute;
   top: 0;
   left: 400px;
@@ -65,7 +65,7 @@ export default {
     justify-content: space-between;
     padding: 0 25px;
     align-items: center;
-    background-color: rgb(226, 226, 226);
+    background-color: $bg_2_color;
 
     &.left{
         border-top-left-radius: unset;

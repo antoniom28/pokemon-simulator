@@ -100,7 +100,7 @@ img.right {
 .field-terrain {
   width: 400px;
   height: 300px;
-  background-color: &field_color;
+  background-color: $field_color;
   border-radius: 50%;
   transform: rotateX(70deg);
   position: absolute;

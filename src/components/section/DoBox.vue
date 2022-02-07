@@ -38,7 +38,7 @@ export default {
 .do-box{
     width: 39%;
     height: 100%;
-    background-color: &bg_2_color;
+    background-color: $bg_2_color;
     padding: 10px;
     box-shadow: 
         inset 0 0 0 6px rgb(107, 107, 107),

@@ -110,7 +110,7 @@ ul{
 
 .turn-back{
         cursor: pointer;
-        background-color: $bg_main_color;
+        background-color: $bg_3_color;
         color: white;
         padding: 50px;
 }
