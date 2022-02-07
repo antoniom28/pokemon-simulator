@@ -1,12 +1,23 @@
 <template>
     <main class="container">
         <div class="enemy-field">
-            <Field />
+            <Field 
+                get-class="right"
+                :indexActualUserPoke="indexActualUserPoke"
+                :userPokemon="userPokemon"
+            />
         </div>
+
         <div class="user-field">
-            <Field />
+            <Field 
+                get-class="left"
+                :indexActualUserPoke="indexActualUserPoke"
+                :userPokemon="userPokemon"
+            />
+
             <div class="menu">
                 <Menu 
+                    @changePoke="changePokemon"
                     :userPokemon="userPokemon"
                 />
             </div>
@@ -21,8 +32,11 @@ import userPokemon from '../../assets/data/userPokemon.json'
 
 export default {
     name: 'Main',
-    mounted : function(){
-        console.log(userPokemon.pokemon);
+    methods: {
+       changePokemon(index){
+           console.log('change poke in menu',index);
+           this.indexActualUserPoke = index;
+       },
     },
     props: {
     },
@@ -34,6 +48,7 @@ export default {
         return{
             userPokemon: userPokemon.pokemon,
             enemyPokemon: ['peppe','francoDino'],
+            indexActualUserPoke: 0,
         }
     }
 }
@@ -41,8 +56,9 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/style/partials/variables.scss';
+
 .enemy-field, .user-field{
-    height: 50vh;
+    height: 50%;
     background-color: rgb(173, 255, 173);
     position: relative;
 }

@@ -1,10 +1,10 @@
 <template>
     <div class="menu">
         <div class="move-set">
-            <span @click="getMove(-1)" class="turn-back">BACK</span>
+            <span @click="turnBack()" class="turn-back">BACK</span>
             <ul>
                 <li v-for="(move,index) in userPokemon.moveSet" :key="index" class="move">
-                    <span @mouseenter="getMoveInfo(index)" @click="getMove(index)">
+                    <span @mouseenter="getMoveInfo(index)" @click="getMove(move,index)">
                         {{move.name}}
                     </span>
                 </li>
@@ -17,7 +17,7 @@
                 <p> {{userPokemon.moveSet[moveInfo].pp}} / {{userPokemon.moveSet[moveInfo].totpp}} </p>
             </div>
             <div class="move-type">
-                <p>{{userPokemon.moveSet[moveInfo].type}}</p>
+                <p> {{userPokemon.moveSet[moveInfo].type}} </p>
             </div>
         </div>
     </div>
@@ -32,8 +32,14 @@ export default {
         }
     },
     methods: {
-        getMove(index){
-            this.$emit('getMove',index);
+        getMove(move,index){
+            if(index != -1)
+                move.pp--;
+            console.log(move);
+            //this.$emit('',index);
+        },
+        turnBack(){
+            this.$emit('turnBack');
         },
         getMoveInfo(index){
             this.moveInfo = index;

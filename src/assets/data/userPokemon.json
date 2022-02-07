@@ -2,6 +2,7 @@
     "pokemon": [
         {
             "name": "Cataldo",
+            "thumb": null,
             "moveSet": [
                 {
                     "name": "leaf",
@@ -32,6 +33,7 @@
         },
         {
             "name": "Pidgey",
+            "thumb": null,
             "moveSet": [
                 {
                     "name": "volo",
@@ -61,28 +63,29 @@
             "hp": 120
         },
         {
-            "name": "Franco",
+            "name": "Briciola",
+            "thumb": "brici2.png",
             "moveSet": [
                 {
-                    "name": "leaf",
+                    "name": "MORZO",
                     "pp": 5,
                     "totpp": 5,
                     "type": "Normal"
                 },
                 {
-                    "name": "splash",
+                    "name": "Salto",
                     "pp": 20,
                     "totpp": 20,
                     "type": "Fire"
                 },
                 {
-                    "name": "action",
+                    "name": "Culata",
                     "pp": 15,
                     "totpp": 15,
                     "type": "Water"
                 },
                 {
-                    "name": "boh",
+                    "name": "Colpo Coda",
                     "pp": 10,
                     "totpp": 10,
                     "type": "Normal/Flame"
@@ -92,6 +95,7 @@
         },
         {
             "name": "Lello",
+            "thumb": null,
             "moveSet": [
                 {
                     "name": "leaf",
@@ -122,6 +126,7 @@
         },
         {
             "name": "Blastoise",
+            "thumb": null,
             "moveSet": [
                 {
                     "name": "leaf",
@@ -152,6 +157,7 @@
         },
         {
             "name": "Pikachu",
+            "thumb": null,
             "moveSet": [
                 {
                     "name": "leaf",

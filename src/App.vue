@@ -37,5 +37,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-width: 800px;
+  height: 654px;
 }
 </style>

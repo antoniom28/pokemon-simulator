@@ -9,12 +9,13 @@
       <MoveSet 
         v-if="menuOpt == 0"
         @getMove="getMoveOption"
+        @turnBack="turnBack"
         :userPokemon="actualPokemon"
       />
 
       <pokeList 
         :allPokemon="userPokemon"
-        @turnBack="getMoveOption"
+        @turnBack="turnBack"
         @changePoke="changePoke"
         v-if="menuOpt == 2"
       />
@@ -48,6 +49,9 @@ export default {
         },
     },
     methods: {
+        turnBack(){
+            this.menuOpt = -1;
+        },
         getMenuOption(index){
             console.log('menu option: ',index);
             this.menuOpt = index;
@@ -60,6 +64,7 @@ export default {
         changePoke(name,index){
             console.log('change poke:' ,name,index);
             this.indexActualPoke = index;
+            this.$emit('changePoke',index);
         },
     },
 }

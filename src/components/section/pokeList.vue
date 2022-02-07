@@ -18,8 +18,11 @@
             </span>
             <div class="confirm-button">
                 <span @click="changePoke" > SI </span>
-                <span @click="turnBack" > NO </span>
+                <span @click="selectedPoke=null" > NO </span>
             </div>
+        </div>
+        <div v-else class="confirm">
+            <div class="turn-back" @click="turnBack" >BACK</div>
         </div>
     </div>
 </template>
@@ -48,7 +51,7 @@ export default {
             this.turnBack();
         },
         turnBack(){
-            this.$emit('turnBack',-1);
+            this.$emit('turnBack');
         }
     },
 }
@@ -103,5 +106,12 @@ ul{
         justify-content: center;
         align-items: center;
     }
+}
+
+.turn-back{
+        cursor: pointer;
+        background-color: gray;
+        color: white;
+        padding: 50px;
 }
 </style>
