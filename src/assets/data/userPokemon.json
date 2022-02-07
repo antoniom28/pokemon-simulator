@@ -1,0 +1,184 @@
+{
+    "pokemon": [
+        {
+            "name": "Cataldo",
+            "moveSet": [
+                {
+                    "name": "leaf",
+                    "pp": 5,
+                    "totpp": 5,
+                    "type": "Normal"
+                },
+                {
+                    "name": "splash",
+                    "pp": 20,
+                    "totpp": 20,
+                    "type": "Fire"
+                },
+                {
+                    "name": "action",
+                    "pp": 15,
+                    "totpp": 15,
+                    "type": "Water"
+                },
+                {
+                    "name": "boh",
+                    "pp": 10,
+                    "totpp": 10,
+                    "type": "Normal/Flame"
+                }
+            ],
+            "hp": 100
+        },
+        {
+            "name": "Pidgey",
+            "moveSet": [
+                {
+                    "name": "volo",
+                    "pp": 5,
+                    "totpp": 5,
+                    "type": "Volante"
+                },
+                {
+                    "name": "splash",
+                    "pp": 20,
+                    "totpp": 20,
+                    "type": "Fire"
+                },
+                {
+                    "name": "action",
+                    "pp": 15,
+                    "totpp": 15,
+                    "type": "Water"
+                },
+                {
+                    "name": "boh",
+                    "pp": 10,
+                    "totpp": 10,
+                    "type": "Normal/Flame"
+                }
+            ],
+            "hp": 120
+        },
+        {
+            "name": "Franco",
+            "moveSet": [
+                {
+                    "name": "leaf",
+                    "pp": 5,
+                    "totpp": 5,
+                    "type": "Normal"
+                },
+                {
+                    "name": "splash",
+                    "pp": 20,
+                    "totpp": 20,
+                    "type": "Fire"
+                },
+                {
+                    "name": "action",
+                    "pp": 15,
+                    "totpp": 15,
+                    "type": "Water"
+                },
+                {
+                    "name": "boh",
+                    "pp": 10,
+                    "totpp": 10,
+                    "type": "Normal/Flame"
+                }
+            ],
+            "hp": 200
+        },
+        {
+            "name": "Lello",
+            "moveSet": [
+                {
+                    "name": "leaf",
+                    "pp": 5,
+                    "totpp": 5,
+                    "type": "Normal"
+                },
+                {
+                    "name": "splash",
+                    "pp": 20,
+                    "totpp": 20,
+                    "type": "Fire"
+                },
+                {
+                    "name": "action",
+                    "pp": 15,
+                    "totpp": 15,
+                    "type": "Water"
+                },
+                {
+                    "name": "boh",
+                    "pp": 10,
+                    "totpp": 10,
+                    "type": "Normal/Flame"
+                }
+            ],
+            "hp": 200
+        },
+        {
+            "name": "Blastoise",
+            "moveSet": [
+                {
+                    "name": "leaf",
+                    "pp": 5,
+                    "totpp": 5,
+                    "type": "Normal"
+                },
+                {
+                    "name": "splash",
+                    "pp": 20,
+                    "totpp": 20,
+                    "type": "Fire"
+                },
+                {
+                    "name": "action",
+                    "pp": 15,
+                    "totpp": 15,
+                    "type": "Water"
+                },
+                {
+                    "name": "boh",
+                    "pp": 10,
+                    "totpp": 10,
+                    "type": "Normal/Flame"
+                }
+            ],
+            "hp": 200
+        },
+        {
+            "name": "Pikachu",
+            "moveSet": [
+                {
+                    "name": "leaf",
+                    "pp": 5,
+                    "totpp": 5,
+                    "type": "Normal"
+                },
+                {
+                    "name": "splash",
+                    "pp": 20,
+                    "totpp": 20,
+                    "type": "Fire"
+                },
+                {
+                    "name": "action",
+                    "pp": 15,
+                    "totpp": 15,
+                    "type": "Water"
+                },
+                {
+                    "name": "boh",
+                    "pp": 10,
+                    "totpp": 10,
+                    "type": "Normal/Flame"
+                }
+            ],
+            "hp": 200
+        }
+    ]
+}

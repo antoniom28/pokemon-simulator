@@ -1,0 +1,84 @@
+<template>
+    <div id="open-menu" class="">
+       <DoBox 
+        v-if="menuOpt != 0 && menuOpt != 2"
+        @getButton="getMenuOption"
+        :userPokemon="actualPokemon"
+       />
+
+      <MoveSet 
+        v-if="menuOpt == 0"
+        @getMove="getMoveOption"
+        :userPokemon="actualPokemon"
+      />
+
+      <pokeList 
+        :allPokemon="userPokemon"
+        @turnBack="getMoveOption"
+        @changePoke="changePoke"
+        v-if="menuOpt == 2"
+      />
+    </div>
+</template>
+
+<script>
+import DoBox from '../section/DoBox.vue'
+import MoveSet from '../section/MoveSet.vue'
+import pokeList from '../section/pokeList.vue'
+
+export default {
+    name: "Menu",
+    components: {
+        DoBox,
+        MoveSet,
+        pokeList,
+    },
+    data(){
+        return{
+            menuOpt: -1,
+            indexActualPoke: 0,
+        }
+    },
+    props: {
+        userPokemon: Array,
+    },
+    computed: {
+        actualPokemon(){
+            return this.userPokemon[this.indexActualPoke];
+        },
+    },
+    methods: {
+        getMenuOption(index){
+            console.log('menu option: ',index);
+            this.menuOpt = index;
+        },
+        getMoveOption(index){
+            console.log('move :',index);
+            if(index == -1)
+                this.menuOpt = index;
+        },
+        changePoke(name,index){
+            console.log('change poke:' ,name,index);
+            this.indexActualPoke = index;
+        },
+    },
+}
+</script>
+
+<style lang="scss" scoped>
+@import '../../assets/style/partials/variables.scss';
+#open-menu{
+    width: 100%;
+    height: 100%;
+}
+
+.menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
+</style>
