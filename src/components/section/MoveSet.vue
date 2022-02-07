@@ -3,8 +3,13 @@
         <div class="move-set">
             <span @click="turnBack()" class="turn-back">BACK</span>
             <ul>
-                <li v-for="(move,index) in userPokemon.moveSet" :key="index" class="move">
-                    <span @mouseenter="getMoveInfo(index)" @click="getMove(move,index)">
+                <li 
+                    @mouseenter="getMoveInfo(index)" 
+                    v-for="(move,index) in userPokemon.moveSet" 
+                    :key="index" class="move"
+                    :class="move.color"
+                >
+                    <span @click="getMove(move,index)">
                         {{move.name}}
                     </span>
                 </li>
@@ -75,20 +80,21 @@ export default {
         width: 100%;
         height: 100%;
         display: flex;
+        justify-content: space-between;
+        padding: 10px 10px 10px 50px;
         flex-wrap: wrap;
 
-        li{
-            width: 50%;
+        li{ //devo dargli la classe delle mosse in global
+            cursor: pointer;
+            width: calc(50% - 50px);
+            margin: 7px 20px;
             display: flex;
+            border-radius: 7px;
             justify-content: center;
             align-items: center;
 
-            span{
-                cursor: pointer;
-            }
-
-            & span:hover::before{
-                content:" > ";
+            &:hover{
+                transform: scale(1.1);
             }
         }
     }
@@ -97,7 +103,7 @@ export default {
 .move-info{
         width: 30%;
         height: 100%;
-        padding: 10px;
+        padding: 10px 30px;
         border: 3px double black;
 
         div{

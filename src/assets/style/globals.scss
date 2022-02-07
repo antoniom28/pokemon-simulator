@@ -26,3 +26,52 @@ a{
 ul,li{
     list-style: none;
 }
+
+li.set-box-normal{
+    box-shadow: inset 0 0 0 2px black ,
+    0 0 0 4px $normal;
+}
+li.set-box-water{
+    box-shadow: inset 0 0 0 2px black ,
+    0 0 0 4px $water;
+}
+li.set-box-grass{
+    box-shadow: inset 0 0 0 2px black ,
+    0 0 0 4px $grass;
+}
+li.set-box-fire{
+    box-shadow: inset 0 0 0 2px black ,
+    0 0 0 4px $fire;
+}
+li.set-box-psychic{
+    box-shadow: inset 0 0 0 2px black ,
+    0 0 0 4px $psychic;
+}
+li.set-box-dragon{
+    box-shadow: inset 0 0 0 2px black ,
+    0 0 0 4px $dragon;
+}
+li.set-box-fighting{
+    box-shadow: inset 0 0 0 2px black ,
+    0 0 0 4px $fighting;
+}
+li.set-box-ground{
+    box-shadow: inset 0 0 0 2px black ,
+    0 0 0 4px $ground;
+}
+li.set-box-rock{
+    box-shadow: inset 0 0 0 2px black ,
+    0 0 0 4px $rock;
+}
+li.set-box-bug{
+    box-shadow: inset 0 0 0 2px black ,
+    0 0 0 4px $bug;
+}
+li.set-box-poison{
+    box-shadow: inset 0 0 0 2px black ,
+    0 0 0 4px $poison;
+}
+li.set-box-steel{
+    box-shadow: inset 0 0 0 2px black ,
+    0 0 0 4px $steel;
+}

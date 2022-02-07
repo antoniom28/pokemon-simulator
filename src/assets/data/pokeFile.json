@@ -12,25 +12,29 @@
                     "name": "leaf",
                     "pp": 5,
                     "totpp": 5,
-                    "type": "Normal"
+                    "color": "set-box-grass",
+                    "type": "Grass"
                 },
                 {
                     "name": "splash",
                     "pp": 20,
                     "totpp": 20,
-                    "type": "Fire"
+                    "color": "set-box-grass",
+                    "type": "Grass"
                 },
                 {
                     "name": "action",
                     "pp": 15,
                     "totpp": 15,
-                    "type": "Water"
+                    "color": "set-box-bug",
+                    "type": "Bug"
                 },
                 {
                     "name": "boh",
                     "pp": 10,
                     "totpp": 10,
-                    "type": "Normal/Flame"
+                    "color": "set-box-poison",
+                    "type": "Poison"
                 }
             ]
         },
@@ -46,25 +50,29 @@
                     "name": "volo",
                     "pp": 5,
                     "totpp": 5,
-                    "type": "Volante"
+                    "color": "set-box-fighting",
+                    "type": "Fighting"
                 },
                 {
                     "name": "splash",
                     "pp": 20,
                     "totpp": 20,
+                    "color": "set-box-fire",
                     "type": "Fire"
                 },
                 {
                     "name": "action",
                     "pp": 15,
                     "totpp": 15,
-                    "type": "Water"
+                    "color": "set-box-dragon",
+                    "type": "Dragon"
                 },
                 {
                     "name": "boh",
                     "pp": 10,
                     "totpp": 10,
-                    "type": "Normal/Flame"
+                    "color": "set-box-fire",
+                    "type": "Fire"
                 }
             ]
         },
@@ -80,25 +88,29 @@
                     "name": "MORZO",
                     "pp": 5,
                     "totpp": 5,
-                    "type": "Normal"
+                    "color": "set-box-bug",
+                    "type": "Bug"
                 },
                 {
                     "name": "Salto",
                     "pp": 20,
                     "totpp": 20,
-                    "type": "Fire"
+                    "color": "set-box-normal",
+                    "type": "Normal"
                 },
                 {
                     "name": "Culata",
                     "pp": 15,
                     "totpp": 15,
+                    "color": "set-box-water",
                     "type": "Water"
                 },
                 {
                     "name": "Colpo Coda",
                     "pp": 10,
                     "totpp": 10,
-                    "type": "Normal/Flame"
+                    "color": "set-box-water",
+                    "type": "Water"
                 }
             ]
         },
@@ -114,25 +126,29 @@
                     "name": "leaf",
                     "pp": 5,
                     "totpp": 5,
-                    "type": "Normal"
+                    "color": "set-box-fire",
+                    "type": "Fire"
                 },
                 {
                     "name": "splash",
                     "pp": 20,
                     "totpp": 20,
-                    "type": "Fire"
+                    "color": "set-box-normal",
+                    "type": "Normal"
                 },
                 {
                     "name": "action",
                     "pp": 15,
                     "totpp": 15,
-                    "type": "Water"
+                    "color": "set-box-fire",
+                    "type": "Fire"
                 },
                 {
                     "name": "boh",
                     "pp": 10,
                     "totpp": 10,
-                    "type": "Normal/Flame"
+                    "color": "set-box-fire",
+                    "type": "Fire"
                 }
             ]
         },
@@ -148,25 +164,29 @@
                     "name": "leaf",
                     "pp": 5,
                     "totpp": 5,
-                    "type": "Normal"
+                    "color": "set-box-fighting",
+                    "type": "Fighting"
                 },
                 {
                     "name": "splash",
                     "pp": 20,
                     "totpp": 20,
-                    "type": "Fire"
+                    "color": "set-box-psychic",
+                    "type": "Psychic"
                 },
                 {
                     "name": "action",
                     "pp": 15,
                     "totpp": 15,
-                    "type": "Water"
+                    "color": "set-box-normal",
+                    "type": "Normal"
                 },
                 {
                     "name": "boh",
                     "pp": 10,
                     "totpp": 10,
-                    "type": "Normal/Flame"
+                    "color": "set-box-fighting",
+                    "type": "Fighting"
                 }
             ]
         },
@@ -182,29 +202,35 @@
                     "name": "leaf",
                     "pp": 5,
                     "totpp": 5,
-                    "type": "Normal"
+                    "color": "set-box-rock",
+                    "type": "Rock"
                 },
                 {
                     "name": "splash",
                     "pp": 20,
                     "totpp": 20,
-                    "type": "Fire"
+                    "color": "set-box-steel",
+                    "type": "Steel"
                 },
                 {
                     "name": "action",
                     "pp": 15,
                     "totpp": 15,
-                    "type": "Water"
+                    "color": "set-box-rock",
+                    "type": "Rock"
                 },
                 {
                     "name": "boh",
                     "pp": 10,
                     "totpp": 10,
-                    "type": "Normal/Flame"
+                    "color": "set-box-ground",
+                    "type": "Ground"
                 }
             ]
         }
     ],
+
+
     "enemypokemon": [
         {
             "name": "Leaf Dog",
@@ -218,24 +244,28 @@
                     "name": "leaf",
                     "pp": 5,
                     "totpp": 5,
+                    "color": "set-box-red",
                     "type": "Normal"
                 },
                 {
                     "name": "splash",
                     "pp": 20,
                     "totpp": 20,
+                    "color": "set-box-red",
                     "type": "Fire"
                 },
                 {
                     "name": "action",
                     "pp": 15,
                     "totpp": 15,
+                    "color": "set-box-red",
                     "type": "Water"
                 },
                 {
                     "name": "boh",
                     "pp": 10,
                     "totpp": 10,
+                    "color": "set-box-red",
                     "type": "Normal/Flame"
                 }
             ]
@@ -252,24 +282,28 @@
                     "name": "volo",
                     "pp": 5,
                     "totpp": 5,
+                    "color": "set-box-red",
                     "type": "Volante"
                 },
                 {
                     "name": "splash",
                     "pp": 20,
                     "totpp": 20,
+                    "color": "set-box-red",
                     "type": "Fire"
                 },
                 {
                     "name": "action",
                     "pp": 15,
                     "totpp": 15,
+                    "color": "set-box-red",
                     "type": "Water"
                 },
                 {
                     "name": "boh",
                     "pp": 10,
                     "totpp": 10,
+                    "color": "set-box-red",
                     "type": "Normal/Flame"
                 }
             ]
@@ -286,24 +320,28 @@
                     "name": "MORZO",
                     "pp": 5,
                     "totpp": 5,
+                    "color": "set-box-red",
                     "type": "Normal"
                 },
                 {
                     "name": "Salto",
                     "pp": 20,
                     "totpp": 20,
+                    "color": "set-box-red",
                     "type": "Fire"
                 },
                 {
                     "name": "Culata",
                     "pp": 15,
                     "totpp": 15,
+                    "color": "set-box-red",
                     "type": "Water"
                 },
                 {
                     "name": "Colpo Coda",
                     "pp": 10,
                     "totpp": 10,
+                    "color": "set-box-red",
                     "type": "Normal/Flame"
                 }
             ]
@@ -320,24 +358,28 @@
                     "name": "leaf",
                     "pp": 5,
                     "totpp": 5,
+                    "color": "set-box-red",
                     "type": "Normal"
                 },
                 {
                     "name": "splash",
                     "pp": 20,
                     "totpp": 20,
+                    "color": "set-box-red",
                     "type": "Fire"
                 },
                 {
                     "name": "action",
                     "pp": 15,
                     "totpp": 15,
+                    "color": "set-box-red",
                     "type": "Water"
                 },
                 {
                     "name": "boh",
                     "pp": 10,
                     "totpp": 10,
+                    "color": "set-box-red",
                     "type": "Normal/Flame"
                 }
             ]
@@ -354,24 +396,28 @@
                     "name": "leaf",
                     "pp": 5,
                     "totpp": 5,
+                    "color": "set-box-red",
                     "type": "Normal"
                 },
                 {
                     "name": "splash",
                     "pp": 20,
                     "totpp": 20,
+                    "color": "set-box-red",
                     "type": "Fire"
                 },
                 {
                     "name": "action",
                     "pp": 15,
                     "totpp": 15,
+                    "color": "set-box-red",
                     "type": "Water"
                 },
                 {
                     "name": "boh",
                     "pp": 10,
                     "totpp": 10,
+                    "color": "set-box-red",
                     "type": "Normal/Flame"
                 }
             ]
@@ -388,24 +434,28 @@
                     "name": "leaf",
                     "pp": 5,
                     "totpp": 5,
+                    "color": "set-box-red",
                     "type": "Normal"
                 },
                 {
                     "name": "splash",
                     "pp": 20,
                     "totpp": 20,
+                    "color": "set-box-red",
                     "type": "Fire"
                 },
                 {
                     "name": "action",
                     "pp": 15,
                     "totpp": 15,
+                    "color": "set-box-red",
                     "type": "Water"
                 },
                 {
                     "name": "boh",
                     "pp": 10,
                     "totpp": 10,
+                    "color": "set-box-red",
                     "type": "Normal/Flame"
                 }
             ]
