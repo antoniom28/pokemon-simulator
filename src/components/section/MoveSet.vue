@@ -1,11 +1,11 @@
 <template>
-    <div class="menu">
+    <div v-if="!moveText" class="menu">
         <div class="move-set">
             <span @click="turnBack()" class="turn-back">BACK</span>
             <ul>
                 <li 
                     @click="getMove(move,index)"
-                    @mouseenter="getMoveInfo(index)" 
+                    @mouseenter="getMoveIndex(index)" 
                     v-for="(move,index) in userPokemon.moveSet" 
                     :key="index" class="move"
                     :class="move.color"
@@ -17,14 +17,20 @@
             </ul>
         </div>
 
-        <div v-if="moveInfo >= 0" class="move-info">
+        <div v-if="moveIndex >= 0" class="move-info">
             <div class="move-pp">
                 <p>PP</p>
-                <p> {{userPokemon.moveSet[moveInfo].pp}} / {{userPokemon.moveSet[moveInfo].totpp}} </p>
+                <p> {{userPokemon.moveSet[moveIndex].pp}} / {{userPokemon.moveSet[moveIndex].totpp}} </p>
             </div>
             <div class="move-type">
-                <p> {{userPokemon.moveSet[moveInfo].type}} </p>
+                <p> {{userPokemon.moveSet[moveIndex].type}} </p>
             </div>
+        </div>
+    </div>
+
+    <div v-else class="menu">
+        <div class="menu-text">
+            {{userPokemon.name}} Usa {{userPokemon.moveSet[moveIndex].name}}
         </div>
     </div>
 </template>
@@ -34,7 +40,8 @@ export default {
     name: "MoveSet",
     data(){
         return{
-            moveInfo: -1,
+            moveIndex: -1,
+            moveText: false,
         }
     },
     methods: {
@@ -45,13 +52,20 @@ export default {
                 else
                     move.pp--;
             console.log(move);
-            //this.$emit('',index);
+            this.moveText = true;
+            setTimeout(() => {
+                this.$emit('getMove',index);
+                setTimeout(() => {
+                    this.moveText = false;
+                    this.turnBack();
+                }, 4000);
+            }, 1500);
         },
         turnBack(){
             this.$emit('turnBack');
         },
-        getMoveInfo(index){
-            this.moveInfo = index;
+        getMoveIndex(index){
+            this.moveIndex = index;
         },
     },
     props: {
@@ -62,6 +76,18 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/style/partials/variables.scss';
+
+.menu-text{
+    width: 90%;
+    margin: 0 auto;
+    height: 100%;
+    background-color: $bg_2_color;
+    padding: 10px;
+    box-shadow: 
+        inset 0 0 0 6px rgb(107, 107, 107),
+        0 0 0 2px yellow,
+        0 0 0 4px black ;
+}
 
 .turn-back{
     cursor: pointer;

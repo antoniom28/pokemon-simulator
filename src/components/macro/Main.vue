@@ -5,6 +5,7 @@
                 get-class="right enemy"
                 :indexActualEnemyPoke="indexActualEnemyPoke"
                 :enemyPokemon="enemyPokemon"
+                :enemySendAttack="enemySendAttack"
             />
         </div>
 
@@ -13,11 +14,13 @@
                 get-class="left user"
                 :indexActualUserPoke="indexActualUserPoke"
                 :userPokemon="userPokemon"
+                :userSendAttack="userSendAttack"
                 :ball="ball"
             />
 
             <div class="menu">
                 <Menu 
+                    @getMove="getMove"
                     @changePoke="changePokemon"
                     :userPokemon="userPokemon"
                 />
@@ -34,14 +37,54 @@ import pokeFile from '../../assets/data/pokeFile.json'
 export default {
     name: 'Main',
     methods: {
-       changePokemon(index){
-           console.log('change poke in menu',index);
-           this.ball=true;
-           this.indexActualUserPoke = -1;
+       getMove(index){
+           this.actualUserMove = index;
+           this.userSendAttack = true;
            setTimeout(() => {
-               this.indexActualUserPoke = index;
-               this.ball=false;
-           }, 1700);
+            let pokeDmg = this.userPokemon[this.indexActualUserPoke].moveSet[this.actualUserMove].damage;
+            this.enemyPokemon[this.indexActualEnemyPoke].hp -= pokeDmg;
+            this.userSendAttack = false;
+            this.actualUserMove = -1;
+            if(this.enemyPokemon[this.indexActualEnemyPoke].hp <= 0){
+                    this.enemyPokemon[this.indexActualEnemyPoke].hp = 0;
+                setTimeout(() => {
+                    this.changeEnemyPokemon();
+                }, 3000);
+            } else
+                setTimeout(() => {
+                    this.getEnemyMove();
+                }, 1000);
+           }, 1000);
+       },
+       getEnemyMove(){
+           this.actualEnemyMove = Math.floor(Math.random()*4);
+           this.enemySendAttack = true;
+           setTimeout(() => {
+            this.userPokemon[this.indexActualUserPoke].hp -= 
+            this.enemyPokemon[this.indexActualEnemyPoke].moveSet[this.actualEnemyMove].damage;
+            this.enemySendAttack = false;
+            this.actualEnemyMove = 0;
+           }, 1000);
+       },
+       changeEnemyPokemon(){
+           this.indexActualEnemyPoke++;
+       },
+       changePokemon(index){
+           let time;
+           if(this.indexActualUserPoke >= 0){
+            this.getEnemyMove();
+            time = 2500;
+        } else
+            time = 0;
+           setTimeout(() => {
+                console.log('change poke in menu',index);
+                this.ball=true;
+                this.indexActualUserPoke = -1;
+                setTimeout(() => {
+                    this.indexActualUserPoke = index;
+                    this.ball=false;
+                }, 1700);
+           }, time);
        },
     },
     props: {
@@ -55,8 +98,12 @@ export default {
             userPokemon: pokeFile.pokemon,
             enemyPokemon: pokeFile.enemypokemon,
             indexActualUserPoke: -1,
-            indexActualEnemyPoke: 1,
+            indexActualEnemyPoke: 0,
             ball: false,
+            actualUserMove: -1,
+            actualEnemyMove: -1,
+            userSendAttack: false,
+            enemySendAttack: false,
         }
     }
 }

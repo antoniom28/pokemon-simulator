@@ -1,7 +1,7 @@
 <template>
 
   <div v-if="getClass == 'right enemy'" class="field">
-    <span :class="getClass"> 
+    <span :class="[getClass,{'attack' : enemySendAttack}]"> 
         <img
             :class="getClass"
             v-if="indexActualEnemyPoke >= 0"
@@ -19,7 +19,7 @@
   </div>
 
   <div v-else class="field"> <!-- LEFT USER -->
-    <span :class="getClass">
+    <span :class="[getClass,{'attack' : userSendAttack}]">
       <img
         :class="getClass"
         v-if="indexActualUserPoke >= 0"
@@ -60,6 +60,8 @@ export default {
     enemyPokemon: Array,
     indexActualEnemyPoke: Number,
     ball: Boolean,
+    userSendAttack: Boolean,
+    enemySendAttack: Boolean,
   },
   methods: {},
   computed: {
@@ -195,6 +197,15 @@ span {
   bottom: 146px;
   left: 130px;
   z-index: 9999;
+  transition: all 1s;
+
+  &.left.attack{
+    left: 160px;
+  }
+
+  &.right.attack{
+    right: 180px;
+  }
 
   &.right {
     bottom: unset;

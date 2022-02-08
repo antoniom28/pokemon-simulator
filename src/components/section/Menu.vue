@@ -61,6 +61,9 @@ export default {
             console.log('move :',index);
             if(index == -1)
                 this.menuOpt = index;
+            else{
+                this.$emit('getMove',index);
+            }
         },
         changePoke(name,index){
             console.log('change poke:' ,name,index);

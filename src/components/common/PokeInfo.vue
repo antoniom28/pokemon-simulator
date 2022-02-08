@@ -32,6 +32,8 @@ export default {
         getClass: String,
     },
     methods: {},
+    computed: {
+    },
 }
 </script>
 
