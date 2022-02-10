@@ -34,11 +34,18 @@
         </div>
     </div>
 
-    <div v-else class="menu">
+    <div v-else-if="moveEnemyText" class="menu">
         <div class="menu-text">
             {{getEnemyNameText}} Usa {{getEnemyMoveText}}
         </div>
     </div>
+
+    <!--<div v-else-if="faint" class="menu">
+        <div class="menu-text">
+            {{getEnemyNameText}} Usa {{getEnemyMoveText}}
+        </div>
+    </div> NON HO ANCORA GGIUNTO NIENTE, DEVI FARE UNA PROPS PROBABILM
+    OPPURE LO FAI DIRETTAMENTE DA QUA-->
 </template>
 
 <script>
@@ -83,13 +90,19 @@ export default {
             }
         },
         userStart(){
+            let enemyFaint = 1;
             setTimeout(() => {
                 this.$emit('getMove','user');
                 setTimeout(() => {
-                    this.getEnemyDamage();
+                    enemyFaint = this.getEnemyDamage();
+                    console.log('hp in moveset',enemyFaint);
                 }, 1000);
                 setTimeout(() => {
                     this.moveUserText = false;
+                    if(enemyFaint == 0){
+                        this.turnBack();
+                        return;
+                    }
                     this.moveEnemyText = true;
                     setTimeout(() => {
                     this.getUserDamage();
@@ -124,6 +137,7 @@ export default {
             this.enemyPokemon.hp -= this.userPokemon.moveSet[this.moveIndex].damage;
             if(this.enemyPokemon.hp <= 0)
                 this.enemyPokemon.hp = 0;
+            return this.enemyPokemon.hp;
         },
         getUserDamage(){
             this.userPokemon.hp -= this.enemyPokemon.moveSet[this.enemyMoveIndex].damage;

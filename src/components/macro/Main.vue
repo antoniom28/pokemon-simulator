@@ -57,66 +57,65 @@ export default {
         }
     },
     methods: {
+        controlEnemyHp(){
+         let faint = this.enemyPokemon[this.indexActualEnemyPoke].hp;
+         console.log('is faint?',faint);
+             if(faint == 0){
+             this.changeEnemyPokemon();
+             return true;
+             }
+            return false;
+        },
        getMove(who){
-           if(who == 'user')
-            this.userSendAttack = true;
-           else
-            this.enemySendAttack = true;
-
-           if(who == 'user')
+           if(who == 'user'){
+                this.getUserMove();
+                setTimeout(() => {      
+                    if(this.controlEnemyHp())
+                        return;
+                    this.getEnemyMove();
+                }, 2000);
+           } else{
+                this.getEnemyMove();
                 setTimeout(() => {
-                    this.enemyGetDamage = true;
+                    this.getUserMove();
+                          
                     setTimeout(() => {
-                        this.enemyGetDamage = false;
-                    }, 500);
-                }, 500);
-            else
-              setTimeout(() => {
-                    this.userGetDamage = true;
-                    setTimeout(() => {
-                        this.userGetDamage = false;
-                    }, 500);
-                }, 500);
+                        if(this.controlEnemyHp())
+                        return;
+                    }, 2000);
+                }, 2000);
+           }
+       },
+       getEnemyMove(){
+        this.enemySendAttack = true;
+        setTimeout(() => {
+            this.userGetDamage = true;
+            setTimeout(() => {
+                this.userGetDamage = false;
+            }, 500);
+        }, 500);
 
+        setTimeout(() => {
+            this.enemySendAttack = false;
+        }, 1000);
+       },
+       getUserMove(){
+        this.userSendAttack = true;
+        setTimeout(() => {
+            this.enemyGetDamage = true;
+            setTimeout(() => {
+                this.enemyGetDamage = false;
+            }, 500);
+        }, 500);
 
-           setTimeout(() => {
-               if(who == 'user')
-                this.userSendAttack = false;
-                else
-                this.enemySendAttack = false;
-           }, 1000);
-
-           setTimeout(() => {
-               if(who == 'user')
-                this.enemySendAttack = true;
-                else
-                this.userSendAttack = true;
-
-                if(who == 'user')
-               setTimeout(() => {
-               this.userGetDamage = true;
-                    setTimeout(() => {
-                        this.userGetDamage = false;
-                    }, 500);
-                }, 500);
-                else
-                setTimeout(() => {
-               this.enemyGetDamage = true;
-                    setTimeout(() => {
-                        this.enemyGetDamage = false;
-                    }, 500);
-                }, 500);
-
-               setTimeout(() => {
-                   if(who == 'user')
-                    this.enemySendAttack = false;
-                    else
-                    this.userSendAttack = false;
-               }, 1000);
-           }, 2000);
+        setTimeout(() => {
+            this.userSendAttack = false;
+        }, 1000);
        },
        changeEnemyPokemon(){
-           this.indexActualEnemyPoke++;
+           setTimeout(() => {
+               this.indexActualEnemyPoke++;
+           }, 1500);
        },
        changePokemon(index){
                 console.log('change poke in menu',index);
@@ -128,19 +127,7 @@ export default {
                 }, 1700);
        },
        changePokemonInBattle(index){
-                this.enemySendAttack = true;
-
-                setTimeout(() => {
-               this.userGetDamage = true;
-                    setTimeout(() => {
-                        this.userGetDamage = false;
-                    }, 500);
-                }, 500);
-
-                setTimeout(() => {
-                    this.enemySendAttack = false;
-                }, 1000);
-
+                this.getEnemyMove();
                 setTimeout(() => {
                     this.changePokemon(index);
                 }, 2000);

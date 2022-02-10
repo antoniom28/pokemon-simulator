@@ -84,7 +84,7 @@ export default {
             let random = Math.floor(Math.random()*4);
                 setTimeout(() => {
                     this.getUserDamage(random);
-                }, 2500);
+                }, 1500);
         },
         getUserDamage(move){
             this.userPokemon[this.indexActualPoke].hp 
