@@ -11,13 +11,14 @@
         @getMove="getMoveOption"
         @turnBack="turnBack"
         :userPokemon="actualPokemon"
+        :enemyPokemon="actualEnemyPokemon"
       />
 
       <pokeList 
         :allPokemon="userPokemon"
+        :indexActualPoke="indexActualPoke"
         @turnBack="turnBack"
         @changePoke="changePoke"
-        :indexActualPoke="indexActualPoke"
         v-if="menuOpt == 2"
       />
     </div>
@@ -43,10 +44,15 @@ export default {
     },
     props: {
         userPokemon: Array,
+        enemyPokemon: Array,
+        indexActualEnemyPoke: Number,
     },
     computed: {
         actualPokemon(){
             return this.userPokemon[this.indexActualPoke];
+        },
+        actualEnemyPokemon(){
+            return this.enemyPokemon[this.indexActualEnemyPoke];
         },
     },
     methods: {

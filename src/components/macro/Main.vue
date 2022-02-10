@@ -6,6 +6,7 @@
                 :indexActualEnemyPoke="indexActualEnemyPoke"
                 :enemyPokemon="enemyPokemon"
                 :enemySendAttack="enemySendAttack"
+                :enemyGetDamage="enemyGetDamage"
             />
         </div>
 
@@ -15,6 +16,7 @@
                 :indexActualUserPoke="indexActualUserPoke"
                 :userPokemon="userPokemon"
                 :userSendAttack="userSendAttack"
+                :userGetDamage="userGetDamage"
                 :ball="ball"
             />
 
@@ -23,6 +25,8 @@
                     @getMove="getMove"
                     @changePoke="changePokemon"
                     :userPokemon="userPokemon"
+                    :enemyPokemon="enemyPokemon"
+                    :indexActualEnemyPoke="indexActualEnemyPoke"
                 />
             </div>
         </div>
@@ -36,35 +40,49 @@ import pokeFile from '../../assets/data/pokeFile.json'
 
 export default {
     name: 'Main',
+    data(){
+        return{
+            userPokemon: pokeFile.pokemon,
+            enemyPokemon: pokeFile.enemypokemon,
+            indexActualUserPoke: -1,
+            indexActualEnemyPoke: 0,
+            ball: false,
+            actualUserMove: -1,
+            actualEnemyMove: -1,
+            userSendAttack: false,
+            enemySendAttack: false,
+            enemyGetDamage: false,
+            userGetDamage: false,
+        }
+    },
     methods: {
        getMove(index){
-           this.actualUserMove = index;
            this.userSendAttack = true;
+
            setTimeout(() => {
-            let pokeDmg = this.userPokemon[this.indexActualUserPoke].moveSet[this.actualUserMove].damage;
-            this.enemyPokemon[this.indexActualEnemyPoke].hp -= pokeDmg;
-            this.userSendAttack = false;
-            this.actualUserMove = -1;
-            if(this.enemyPokemon[this.indexActualEnemyPoke].hp <= 0){
-                    this.enemyPokemon[this.indexActualEnemyPoke].hp = 0;
-                setTimeout(() => {
-                    this.changeEnemyPokemon();
-                }, 3000);
-            } else
-                setTimeout(() => {
-                    this.getEnemyMove();
-                }, 1000);
-           }, 1000);
-       },
-       getEnemyMove(){
-           this.actualEnemyMove = Math.floor(Math.random()*4);
-           this.enemySendAttack = true;
+               this.enemyGetDamage = true;
+               setTimeout(() => {
+                   this.enemyGetDamage = false;
+               }, 500);
+           }, 500);
+
            setTimeout(() => {
-            this.userPokemon[this.indexActualUserPoke].hp -= 
-            this.enemyPokemon[this.indexActualEnemyPoke].moveSet[this.actualEnemyMove].damage;
-            this.enemySendAttack = false;
-            this.actualEnemyMove = 0;
+               this.userSendAttack = false;
            }, 1000);
+           setTimeout(() => {
+               this.enemySendAttack = true;
+
+               setTimeout(() => {
+               this.userGetDamage = true;
+               setTimeout(() => {
+                   this.userGetDamage = false;
+               }, 500);
+           }, 500);
+
+               setTimeout(() => {
+                   this.enemySendAttack = false;
+               }, 1000);
+           }, 2000);
        },
        changeEnemyPokemon(){
            this.indexActualEnemyPoke++;
@@ -72,7 +90,7 @@ export default {
        changePokemon(index){
            let time;
            if(this.indexActualUserPoke >= 0){
-            this.getEnemyMove();
+            //this.getEnemyMove();
             time = 2500;
         } else
             time = 0;
@@ -93,19 +111,6 @@ export default {
         Field,
         Menu,
     },
-    data(){
-        return{
-            userPokemon: pokeFile.pokemon,
-            enemyPokemon: pokeFile.enemypokemon,
-            indexActualUserPoke: -1,
-            indexActualEnemyPoke: 0,
-            ball: false,
-            actualUserMove: -1,
-            actualEnemyMove: -1,
-            userSendAttack: false,
-            enemySendAttack: false,
-        }
-    }
 }
 </script>
 

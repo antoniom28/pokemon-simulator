@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!moveText" class="menu">
+    <div v-if="!moveUserText && !moveEnemyText" class="menu">
         <div class="move-set">
             <span @click="turnBack()" class="turn-back">BACK</span>
             <ul>
@@ -28,9 +28,15 @@
         </div>
     </div>
 
+    <div v-else-if="!moveEnemyText" class="menu">
+        <div class="menu-text">
+            {{getUserNameText}} Usa {{getUserMoveText}}
+        </div>
+    </div>
+
     <div v-else class="menu">
         <div class="menu-text">
-            {{userPokemon.name}} Usa {{userPokemon.moveSet[moveIndex].name}}
+            {{getEnemyNameText}} Usa {{getEnemyMoveText}}
         </div>
     </div>
 </template>
@@ -41,8 +47,24 @@ export default {
     data(){
         return{
             moveIndex: -1,
-            moveText: false,
+            enemyMoveIndex: -1,
+            moveUserText: false,
+            moveEnemyText: false,
         }
+    },
+    computed: {
+        getUserNameText(){
+            return this.userPokemon.name;
+        },
+        getUserMoveText(){
+            return this.userPokemon.moveSet[this.moveIndex].name;
+        },
+        getEnemyNameText(){
+            return this.enemyPokemon.name;
+        },
+        getEnemyMoveText(){
+            return this.enemyPokemon.moveSet[this.enemyMoveIndex].name;
+        },
     },
     methods: {
         getMove(move,index){
@@ -51,15 +73,35 @@ export default {
                     move.pp = move.pp;
                 else
                     move.pp--;
-            console.log(move);
-            this.moveText = true;
+            this.moveUserText = true;
+            this.getEnemyMoveIndex();
             setTimeout(() => {
                 this.$emit('getMove',index);
                 setTimeout(() => {
-                    this.moveText = false;
-                    this.turnBack();
-                }, 4000);
+                    this.getEnemyDamage();
+                }, 1000);
+                setTimeout(() => {
+                    this.moveUserText = false;
+                    this.moveEnemyText = true;
+                    setTimeout(() => {
+                    this.getUserDamage();
+                    }, 1000);
+                    setTimeout(() => {
+                        this.moveEnemyText = false;
+                        this.turnBack();
+                    }, 2000);
+                }, 2000);
             }, 1500);
+        },
+        getEnemyDamage(){
+            this.enemyPokemon.hp -= this.userPokemon.moveSet[this.moveIndex].damage;
+            if(this.enemyPokemon.hp <= 0)
+                this.enemyPokemon.hp = 0;
+        },
+        getUserDamage(){
+            this.userPokemon.hp -= this.enemyPokemon.moveSet[this.enemyMoveIndex].damage;
+            if(this.userPokemon.hp <= 0)
+                this.userPokemon.hp = 0;
         },
         turnBack(){
             this.$emit('turnBack');
@@ -67,9 +109,14 @@ export default {
         getMoveIndex(index){
             this.moveIndex = index;
         },
+        getEnemyMoveIndex(){
+            let random = Math.floor(Math.random()*4);
+            this.enemyMoveIndex = random;
+        },
     },
     props: {
         userPokemon: Object,
+        enemyPokemon: Object,
     },
 }
 </script>

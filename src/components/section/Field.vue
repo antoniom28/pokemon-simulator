@@ -3,11 +3,18 @@
   <div v-if="getClass == 'right enemy'" class="field">
     <span :class="[getClass,{'attack' : enemySendAttack}]"> 
         <img
-            :class="getClass"
-            v-if="indexActualEnemyPoke >= 0"
-            :src="getEnemyThumb"
-        alt=""
-      />
+          :class="getClass"
+          v-if="indexActualEnemyPoke >= 0"
+          :src="getEnemyThumb"
+          alt=""
+        />
+        <img
+          v-if="enemyGetDamage"
+          class="damage"
+          src="../../assets/img/damage.png"
+          alt=""
+        />
+
     </span>
     <PokeInfo 
         v-if="indexActualEnemyPoke >= 0"
@@ -26,6 +33,13 @@
         :src="getThumb"
         alt=""
       />
+      <img
+          v-if="userGetDamage"
+          :class="getClass"
+          class="damage"
+          src="../../assets/img/damage.png"
+          alt=""
+        />
     </span>
 
     <PokeInfo 
@@ -62,6 +76,8 @@ export default {
     ball: Boolean,
     userSendAttack: Boolean,
     enemySendAttack: Boolean,
+    enemyGetDamage: Boolean,
+    userGetDamage: Boolean,
   },
   methods: {},
   computed: {
@@ -156,7 +172,6 @@ export default {
   }
 }
 
-
 img {
   width: 100px;
 }
@@ -169,11 +184,23 @@ img.right {
   width: 110px;
 }
 
-
 .field {
   position: relative;
   width: 100%;
   height: 100%;
+}
+
+.damage{
+    position: absolute;
+    top: 55px;
+    left: 35px;
+    width: 40px;
+}
+
+.damage.left{
+  width: 65px;
+  top: 30px;
+  left: 55px;
 }
 
 .field-terrain {
