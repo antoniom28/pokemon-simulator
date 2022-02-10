@@ -56,31 +56,61 @@ export default {
         }
     },
     methods: {
-       getMove(index){
-           this.userSendAttack = true;
+       getMove(who){
+           if(who == 'user')
+            this.userSendAttack = true;
+           else
+            this.enemySendAttack = true;
+
+           if(who == 'user')
+                setTimeout(() => {
+                    this.enemyGetDamage = true;
+                    setTimeout(() => {
+                        this.enemyGetDamage = false;
+                    }, 500);
+                }, 500);
+            else
+              setTimeout(() => {
+                    this.userGetDamage = true;
+                    setTimeout(() => {
+                        this.userGetDamage = false;
+                    }, 500);
+                }, 500);
+
 
            setTimeout(() => {
-               this.enemyGetDamage = true;
-               setTimeout(() => {
-                   this.enemyGetDamage = false;
-               }, 500);
-           }, 500);
-
-           setTimeout(() => {
-               this.userSendAttack = false;
+               if(who == 'user')
+                this.userSendAttack = false;
+                else
+                this.enemySendAttack = false;
            }, 1000);
-           setTimeout(() => {
-               this.enemySendAttack = true;
 
+           setTimeout(() => {
+               if(who == 'user')
+                this.enemySendAttack = true;
+                else
+                this.userSendAttack = true;
+
+                if(who == 'user')
                setTimeout(() => {
                this.userGetDamage = true;
-               setTimeout(() => {
-                   this.userGetDamage = false;
-               }, 500);
-           }, 500);
+                    setTimeout(() => {
+                        this.userGetDamage = false;
+                    }, 500);
+                }, 500);
+                else
+                setTimeout(() => {
+               this.enemyGetDamage = true;
+                    setTimeout(() => {
+                        this.enemyGetDamage = false;
+                    }, 500);
+                }, 500);
 
                setTimeout(() => {
-                   this.enemySendAttack = false;
+                   if(who == 'user')
+                    this.enemySendAttack = false;
+                    else
+                    this.userSendAttack = false;
                }, 1000);
            }, 2000);
        },

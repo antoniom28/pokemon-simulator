@@ -7,6 +7,7 @@
             "hp": 100,
             "maxHp": 100,
             "gender": "F",
+            "speed": 140,
             "moveSet": [
                 {
                     "name": "leaf",
@@ -49,6 +50,7 @@
             "hp": 120,
             "maxHp": 120,
             "gender": "F",
+            "speed": 60,
             "moveSet": [
                 {
                     "name": "volo",
@@ -91,6 +93,7 @@
             "hp": 200,
             "maxHp": 200,
             "gender": "M",
+            "speed": 10,
             "moveSet": [
                 {
                     "name": "MORZO",
@@ -133,6 +136,7 @@
             "hp": 300,
             "maxHp": 300,
             "gender": "M",
+            "speed": 230,
             "moveSet": [
                 {
                     "name": "leaf",
@@ -175,6 +179,7 @@
             "hp": 160,
             "maxHp": 160,
             "gender": "F",
+            "speed": 130,
             "moveSet": [
                 {
                     "name": "leaf",
@@ -217,6 +222,7 @@
             "hp": 450,
             "maxHp": 450,
             "gender": "M",
+            "speed": 70,
             "moveSet": [
                 {
                     "name": "leaf",
@@ -263,6 +269,7 @@
             "hp": 100,
             "maxHp": 100,
             "gender": "F",
+            "speed": 100,
             "moveSet": [
                 {
                     "name": "leaf",
@@ -305,6 +312,7 @@
             "hp": 120,
             "maxHp": 120,
             "gender": "F",
+            "speed": 90,
             "moveSet": [
                 {
                     "name": "volo",
@@ -347,6 +355,7 @@
             "hp": 200,
             "maxHp": 200,
             "gender": "M",
+            "speed": 10,
             "moveSet": [
                 {
                     "name": "MORZO",
@@ -389,6 +398,7 @@
             "hp": 300,
             "maxHp": 300,
             "gender": "M",
+            "speed": 120,
             "moveSet": [
                 {
                     "name": "leaf",
@@ -431,6 +441,7 @@
             "hp": 160,
             "maxHp": 160,
             "gender": "F",
+            "speed": 150,
             "moveSet": [
                 {
                     "name": "leaf",
@@ -473,6 +484,7 @@
             "hp": 450,
             "maxHp": 450,
             "gender": "M",
+            "speed": 300,
             "moveSet": [
                 {
                     "name": "leaf",

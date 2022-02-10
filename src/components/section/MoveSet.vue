@@ -73,10 +73,18 @@ export default {
                     move.pp = move.pp;
                 else
                     move.pp--;
-            this.moveUserText = true;
             this.getEnemyMoveIndex();
+                if(this.userPokemon.speed >= this.enemyPokemon.speed){
+                this.moveUserText = true;
+                this.userStart();
+            } else{
+                this.moveEnemyText = true;
+                this.enemyStart();
+            }
+        },
+        userStart(){
             setTimeout(() => {
-                this.$emit('getMove',index);
+                this.$emit('getMove','user');
                 setTimeout(() => {
                     this.getEnemyDamage();
                 }, 1000);
@@ -88,6 +96,25 @@ export default {
                     }, 1000);
                     setTimeout(() => {
                         this.moveEnemyText = false;
+                        this.turnBack();
+                    }, 2000);
+                }, 2000);
+            }, 1500);
+        },
+        enemyStart(){
+            setTimeout(() => {
+                this.$emit('getMove','enemy');
+                setTimeout(() => {
+                    this.getUserDamage();
+                }, 1000);
+                setTimeout(() => {
+                    this.moveUserText = true;
+                    this.moveEnemyText = false;
+                    setTimeout(() => {
+                    this.getEnemyDamage();
+                    }, 1000);
+                    setTimeout(() => {
+                        this.moveUserText = false;
                         this.turnBack();
                     }, 2000);
                 }, 2000);
