@@ -68,8 +68,30 @@ export default {
         },
         changePoke(name,index){
             console.log('change poke:' ,name,index);
-            this.indexActualPoke = index;
-            this.$emit('changePoke',index);
+            if(this.indexActualPoke >= 0){
+                this.$emit('changePokeInBattle',index);
+                this.enemyAttack();
+                setTimeout(() => {
+                    this.indexActualPoke = index;
+                }, 4000);
+            } else {
+                this.indexActualPoke = index;
+                this.$emit('changePoke',index);
+            }
+            
+        },
+        enemyAttack(){
+            let random = Math.floor(Math.random()*4);
+                setTimeout(() => {
+                    this.getUserDamage(random);
+                }, 2500);
+        },
+        getUserDamage(move){
+            this.userPokemon[this.indexActualPoke].hp 
+            -= this.enemyPokemon[this.indexActualEnemyPoke].moveSet[move].damage;
+            
+            if(this.userPokemon[this.indexActualPoke].hp <= 0)
+                this.userPokemon[this.indexActualPoke].hp = 0;
         },
     },
 }

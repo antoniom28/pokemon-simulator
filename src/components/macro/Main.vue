@@ -24,6 +24,7 @@
                 <Menu 
                     @getMove="getMove"
                     @changePoke="changePokemon"
+                    @changePokeInBattle="changePokemonInBattle"
                     :userPokemon="userPokemon"
                     :enemyPokemon="enemyPokemon"
                     :indexActualEnemyPoke="indexActualEnemyPoke"
@@ -118,13 +119,6 @@ export default {
            this.indexActualEnemyPoke++;
        },
        changePokemon(index){
-           let time;
-           if(this.indexActualUserPoke >= 0){
-            //this.getEnemyMove();
-            time = 2500;
-        } else
-            time = 0;
-           setTimeout(() => {
                 console.log('change poke in menu',index);
                 this.ball=true;
                 this.indexActualUserPoke = -1;
@@ -132,7 +126,24 @@ export default {
                     this.indexActualUserPoke = index;
                     this.ball=false;
                 }, 1700);
-           }, time);
+       },
+       changePokemonInBattle(index){
+                this.enemySendAttack = true;
+
+                setTimeout(() => {
+               this.userGetDamage = true;
+                    setTimeout(() => {
+                        this.userGetDamage = false;
+                    }, 500);
+                }, 500);
+
+                setTimeout(() => {
+                    this.enemySendAttack = false;
+                }, 1000);
+
+                setTimeout(() => {
+                    this.changePokemon(index);
+                }, 2000);
        },
     },
     props: {
