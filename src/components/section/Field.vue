@@ -22,6 +22,11 @@
         :poke="enemyPokemon"
         getClass="left enemy"
     />
+
+    <div v-if="enemyBall" class="ball enemy">
+      <img src="../../assets/img/ball.png" alt="">
+    </div>
+
     <div class="field-terrain" :class="getClass"></div>
   </div>
 
@@ -74,6 +79,7 @@ export default {
     enemyPokemon: Array,
     indexActualEnemyPoke: Number,
     ball: Boolean,
+    enemyBall: Boolean,
     userSendAttack: Boolean,
     enemySendAttack: Boolean,
     enemyGetDamage: Boolean,
@@ -108,6 +114,78 @@ export default {
   
   img{
     width: 40px;
+  }
+}
+
+.ball.enemy{
+  left: unset;
+  right: 30px;
+  animation: unset;
+  animation: throwR 1.5s linear forwards; 
+  
+  img{
+    width: 40px;
+  }
+}
+
+@keyframes throwR {
+  0%{
+    transform: rotate(0deg);
+    top: 70px;
+    right: 30px;
+  }
+  10%{
+    transform: rotate(-90deg);
+    top: 75px;
+    right: 30px;
+  }
+  20%{
+    transform: rotate(-180deg);
+    top: 80px;
+    right: 30px;
+  }
+  30%{
+    transform: rotate(-270deg);
+    top: 85px;
+    right: 30px;
+  }
+  40%{
+    transform: rotate(-330deg);
+    top: 90px;
+    right: 40px;
+  }
+  50%{
+    top: 110px;
+    right: 62.5x;
+    transform: rotate(-360deg);
+  }
+  55%{
+      top: 90px;
+      transform: rotate(-540deg);
+  }
+  60%{
+    top: 110px;
+    transform: rotate(-720deg);
+    right: 85px;
+  }
+  70%{
+      top: 100px;
+      transform: rotate(-900deg);
+    right: 107.5x;
+  }
+  80%{
+    top: 110px;
+    right: 130px;
+    transform: rotate(-1080deg);
+  }
+  90%{
+    right: 152.5px;
+    transform: rotate(-1260deg);
+  }
+  100%{
+    transform: rotate(-1440deg);
+    top: 110px;
+    right: 185px;
   }
 }
 

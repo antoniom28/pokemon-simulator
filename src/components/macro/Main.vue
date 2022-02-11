@@ -7,6 +7,7 @@
                 :enemyPokemon="enemyPokemon"
                 :enemySendAttack="enemySendAttack"
                 :enemyGetDamage="enemyGetDamage"
+                :enemyBall="enemyBall"
             />
         </div>
 
@@ -50,7 +51,9 @@ export default {
             enemyPokemon: pokeFile.enemypokemon,
             indexActualUserPoke: -1,
             indexActualEnemyPoke: 0,
+            indexNextEnemyPoke: 1,
             ball: false,
+            enemyBall: false,
             actualUserMove: -1,
             actualEnemyMove: -1,
             userSendAttack: false,
@@ -153,7 +156,15 @@ export default {
        },
        changeEnemyPokemon(){
            setTimeout(() => {
-               this.indexActualEnemyPoke++;
+               this.indexActualEnemyPoke = -1;
+                this.enemyBall = true;
+                    this.noClick = true;
+                    setTimeout(() => {
+                            this.indexActualEnemyPoke = this.indexNextEnemyPoke;
+                            this.indexNextEnemyPoke++;
+                            this.enemyBall=false;
+                            this.noClick = false;
+                        }, 1700);
            }, 1500);
        },
        changeUserPokemon(){

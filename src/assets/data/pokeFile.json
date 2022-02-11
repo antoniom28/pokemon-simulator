@@ -266,7 +266,7 @@
             "name": "Leaf Dog",
             "thumb": "leafDog_enemy.png",
             "lv": 42,
-            "hp": 130,
+            "hp": 10,
             "maxHp": 130,
             "gender": "F",
             "speed": 160,
