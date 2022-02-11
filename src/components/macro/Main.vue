@@ -86,8 +86,6 @@ export default {
         },
        getMove(who){
            if(who == 'user'){
-              //  if(this.controlUserHp())
-                 //   return
                 this.getUserMove();
                 setTimeout(() => {      
                     if(this.controlEnemyHp())
@@ -152,9 +150,6 @@ export default {
                setTimeout(() => {
                    this.userPokeFaint = false;
                }, 1500);
-              // this.indexActualUserPoke++;
-               //let i = this.indexActualUserPoke + 1;
-              // this.changePokemon(i);
            }, 1500);
        },
        changePokemon(index){

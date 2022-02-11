@@ -176,12 +176,36 @@ export default {
             this.enemyPokemon.hp -= this.userPokemon.moveSet[this.moveIndex].damage;
             if(this.enemyPokemon.hp <= 0)
                 this.enemyPokemon.hp = 0;
-            return this.enemyPokemon.hp;
+
+        let hp = document.querySelectorAll('.total-hp')[0];
+        let barDmg  = document.querySelectorAll('.loss-hp')[0];
+        console.log('enemy hp is',hp,barDmg);
+        let dmg = this.enemyPokemon.maxHp - this.enemyPokemon.hp;
+        let diff = Math.floor((dmg*100) / this.enemyPokemon.maxHp);
+        console.log(dmg);
+        if(diff == 100){
+            setTimeout(() => {
+                hp.style.width = `100%`;
+                barDmg.style.width = `0%`;
+            }, 2500);
+        } 
+        hp.style.width = `${100 - diff}%`;
+        barDmg.style.width = `${diff}%`;
+        return this.enemyPokemon.hp;
         },
         getUserDamage(){
             this.userPokemon.hp -= this.enemyPokemon.moveSet[this.enemyMoveIndex].damage;
             if(this.userPokemon.hp <= 0)
                 this.userPokemon.hp = 0;
+
+        let hp = document.querySelectorAll('.total-hp')[1];
+        let barDmg  = document.querySelectorAll('.loss-hp')[1];
+        console.log('user hp is',hp,barDmg);
+        let dmg = this.userPokemon.maxHp - this.userPokemon.hp;
+        let diff = Math.floor((dmg*100) / this.userPokemon.maxHp);
+        hp.style.width = `${100 - diff}%`;
+        barDmg.style.width = `${diff}%`;
+
             return this.userPokemon.hp;
         },
         turnBack(){

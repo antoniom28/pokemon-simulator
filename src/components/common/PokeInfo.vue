@@ -10,7 +10,10 @@
       <div class="hp-bar">
         <div class="bar">
           <span>HP</span>
-          <div class="total-hp"></div> <!--barra verde-->
+          <div class="total">
+            <div class="total-hp"></div> <!--barra verde-->
+            <div class="loss-hp"></div> <!--barra rossa-->
+          </div>
         </div>
       </div>
       <div class="hp">
@@ -93,12 +96,26 @@ export default {
     justify-content: space-between;
     border-radius: 20px;
 
+    .total{
+      height: 20px;
+      width: 88%;
+      padding-right: 10px;
+      display: flex;
+      justify-content: center;
+    }
+    
     .total-hp {
       height: 20px;
       display: inline-block;
-      width: 88%;
-      border-radius: 15px;
+      width: 100%;
       background-color: green;
+    }
+
+    .loss-hp{
+      height: 20px;
+      display: inline-block;
+      width: 0%;
+      background-color: red;
     }
   }
 
