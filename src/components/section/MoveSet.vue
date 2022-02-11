@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!moveUserText && !moveEnemyText" class="menu">
+    <div v-if="!moveUserText && !moveEnemyText && !faint" class="menu">
         <div class="move-set">
             <span @click="turnBack()" class="turn-back">BACK</span>
             <ul>
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div v-else-if="!moveEnemyText" class="menu">
+    <div v-else-if="!moveEnemyText && !faint" class="menu">
         <div class="menu-text">
             {{getUserNameText}} Usa {{getUserMoveText}}
         </div>
@@ -40,12 +40,11 @@
         </div>
     </div>
 
-    <!--<div v-else-if="faint" class="menu">
+   <div v-else class="menu">
         <div class="menu-text">
-            {{getEnemyNameText}} Usa {{getEnemyMoveText}}
+            {{pokeFainted}} is fainted!!
         </div>
-    </div> NON HO ANCORA GGIUNTO NIENTE, DEVI FARE UNA PROPS PROBABILM
-    OPPURE LO FAI DIRETTAMENTE DA QUA-->
+   </div>
 </template>
 
 <script>
@@ -57,6 +56,8 @@ export default {
             enemyMoveIndex: -1,
             moveUserText: false,
             moveEnemyText: false,
+            faint: false,
+            pokeFainted: "",
         }
     },
     computed: {
@@ -91,44 +92,82 @@ export default {
         },
         userStart(){
             let enemyFaint = 1;
+            let userFaint = 1;
             setTimeout(() => {
                 this.$emit('getMove','user');
                 setTimeout(() => {
                     enemyFaint = this.getEnemyDamage();
-                    console.log('hp in moveset',enemyFaint);
+                    console.log('enemy hp in moveset',enemyFaint);
                 }, 1000);
                 setTimeout(() => {
                     this.moveUserText = false;
-                    if(enemyFaint == 0){
-                        this.turnBack();
+                    //FUNZIONA
+                    if(enemyFaint == 0){ 
+                        this.faint = true;
+                        this.pokeFainted = this.enemyPokemon.name;
+                        setTimeout(() => {
+                            this.turnBack();
+                        }, 1500);
                         return;
                     }
                     this.moveEnemyText = true;
                     setTimeout(() => {
-                    this.getUserDamage();
+                    userFaint = this.getUserDamage();
+                    console.log('user hp in moveset',userFaint);
                     }, 1000);
                     setTimeout(() => {
                         this.moveEnemyText = false;
+                        //FUNZIONA
+                        if(userFaint == 0){
+                        this.faint = true;
+                        this.pokeFainted = this.userPokemon.name;
+                        setTimeout(() => {
+                            this.turnBack();
+                        }, 1500);
+                        return;
+                        }
                         this.turnBack();
                     }, 2000);
                 }, 2000);
             }, 1500);
         },
         enemyStart(){
+            let enemyFaint = 1;
+            let userFaint = 1;
             setTimeout(() => {
                 this.$emit('getMove','enemy');
                 setTimeout(() => {
-                    this.getUserDamage();
+                    userFaint = this.getUserDamage();
+                    console.log('hp userO in moveset',userFaint);
                 }, 1000);
                 setTimeout(() => {
-                    this.moveUserText = true;
                     this.moveEnemyText = false;
+                    //NON FUNZIONA
+                    if(userFaint == 0){
+                        this.faint = true;
+                        this.pokeFainted = this.userPokemon.name;
+                        setTimeout(() => {
+                            this.turnBack();
+                        }, 1500);
+                        return;
+                    }
+                    this.moveUserText = true;
                     setTimeout(() => {
-                    this.getEnemyDamage();
+                    enemyFaint = this.getEnemyDamage();
+                    console.log('hp enemy in moveset',enemyFaint);
                     }, 1000);
                     setTimeout(() => {
                         this.moveUserText = false;
-                        this.turnBack();
+                        //FUNZIONA
+                        if(enemyFaint == 0){
+                        this.faint = true;
+                        this.pokeFainted = this.enemyPokemon.name;
+                        setTimeout(() => {
+                            this.turnBack();
+                        }, 1500);
+                        return;
+                    }
+                    this.turnBack();
                     }, 2000);
                 }, 2000);
             }, 1500);
@@ -143,6 +182,7 @@ export default {
             this.userPokemon.hp -= this.enemyPokemon.moveSet[this.enemyMoveIndex].damage;
             if(this.userPokemon.hp <= 0)
                 this.userPokemon.hp = 0;
+            return this.userPokemon.hp;
         },
         turnBack(){
             this.$emit('turnBack');

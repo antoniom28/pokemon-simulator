@@ -5,7 +5,10 @@
                 v-for="(poke,index) in allPokemon"
                 :key="index"
             >
-                <span @click="getPokemon(index)">
+                <span 
+                    :class="{'fainted' : poke.hp == 0}"
+                    @click="getPokemon(index)"
+                >
                     {{poke.name}}
                 </span>
             </li>
@@ -40,9 +43,14 @@ export default {
     props: {
         allPokemon: Array,
         indexActualPoke: Number,
+        allUserFaint: Array,
     },
     methods: {
         getPokemon(index){
+            for(let i=0; i<this.allUserFaint.length; i++){
+                if(this.allUserFaint[i] == this.allPokemon[index].name)
+                    return;
+            }
             this.selectedPoke = this.allPokemon[index].name;
             this.indexSelectedPoke = index;
             console.log('pokemon :',index);
@@ -80,6 +88,12 @@ ul{
             cursor: pointer;
         }
     }
+}
+
+.fainted{
+    text-decoration: line-through;
+    color: red;
+    border: 1px solid red;
 }
 
 .confirm{

@@ -23,11 +23,14 @@ export default {
     },
     methods: {
         getButton(index){
+            if(this.noClick)
+                return;
             console.log(index);
             this.$emit('getButton',index);
         },},
     props: {
         userPokemon: Object,
+        noClick: Boolean,
     },
 }
 </script>

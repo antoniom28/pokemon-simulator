@@ -4,7 +4,7 @@
             "name": "Leaf Dog",
             "thumb": "leafDog_user.png",
             "lv": 42,
-            "hp": 100,
+            "hp": 10,
             "maxHp": 100,
             "gender": "F",
             "speed": 140,
@@ -269,7 +269,7 @@
             "hp": 100,
             "maxHp": 100,
             "gender": "F",
-            "speed": 100,
+            "speed": 160,
             "moveSet": [
                 {
                     "name": "leaf",

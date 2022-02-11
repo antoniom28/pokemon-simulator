@@ -4,6 +4,7 @@
         v-if="menuOpt != 0 && menuOpt != 2"
         @getButton="getMenuOption"
         :userPokemon="actualPokemon"
+        :noClick="noClick"
        />
 
       <MoveSet 
@@ -17,9 +18,10 @@
       <pokeList 
         :allPokemon="userPokemon"
         :indexActualPoke="indexActualPoke"
+        :allUserFaint="allUserFaint"
         @turnBack="turnBack"
         @changePoke="changePoke"
-        v-if="menuOpt == 2"
+        v-if="getOpt == 2"
       />
     </div>
 </template>
@@ -46,8 +48,19 @@ export default {
         userPokemon: Array,
         enemyPokemon: Array,
         indexActualEnemyPoke: Number,
+        noClick: Boolean,
+        userPokeFaint: Boolean,
+        allUserFaint: Array,
     },
     computed: {
+        getOpt(){
+            console.log(this.userPokeFaint,'daidai');
+            if(this.userPokeFaint){
+                this.menuOpt = 2;
+                this.indexActualPoke = -1;
+                }
+            return this.menuOpt;
+        },
         actualPokemon(){
             return this.userPokemon[this.indexActualPoke];
         },
@@ -68,6 +81,8 @@ export default {
         },
         changePoke(name,index){
             console.log('change poke:' ,name,index);
+            if(index == this.indexActualPoke)
+                return;
             if(this.indexActualPoke >= 0){
                 this.$emit('changePokeInBattle',index);
                 this.enemyAttack();

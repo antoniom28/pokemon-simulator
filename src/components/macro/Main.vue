@@ -28,6 +28,9 @@
                     :userPokemon="userPokemon"
                     :enemyPokemon="enemyPokemon"
                     :indexActualEnemyPoke="indexActualEnemyPoke"
+                    :noClick="noClick"
+                    :userPokeFaint="userPokeFaint"
+                    :allUserFaint="allUserFaint"
                 />
             </div>
         </div>
@@ -54,35 +57,60 @@ export default {
             enemySendAttack: false,
             enemyGetDamage: false,
             userGetDamage: false,
+            noClick: false,
+            userPokeFaint: false,
+            allUserFaint: [],
+            allEnemyFaint: [],
         }
     },
     methods: {
         controlEnemyHp(){
          let faint = this.enemyPokemon[this.indexActualEnemyPoke].hp;
-         console.log('is faint?',faint);
+         console.log('is enemy faint?',faint);
              if(faint == 0){
              this.changeEnemyPokemon();
              return true;
              }
             return false;
         },
+        controlUserHp(){
+         let faint = this.userPokemon[this.indexActualUserPoke].hp;
+         console.log('is user faint?',faint);
+             if(faint == 0){
+             this.allUserFaint.push(this.userPokemon[this.indexActualUserPoke].name);
+             console.log(this.allUserFaint);
+             this.changeUserPokemon();
+             return true;
+             }
+            return false;
+        },
        getMove(who){
            if(who == 'user'){
+              //  if(this.controlUserHp())
+                 //   return
                 this.getUserMove();
                 setTimeout(() => {      
                     if(this.controlEnemyHp())
                         return;
                     this.getEnemyMove();
+                    setTimeout(() => {
+                        if(this.controlUserHp())
+                        return;
+                    }, 2000);
                 }, 2000);
+
            } else{
                 this.getEnemyMove();
                 setTimeout(() => {
+                    if(this.controlUserHp())
+                        return
                     this.getUserMove();
                           
                     setTimeout(() => {
                         if(this.controlEnemyHp())
                         return;
                     }, 2000);
+
                 }, 2000);
            }
        },
@@ -117,17 +145,32 @@ export default {
                this.indexActualEnemyPoke++;
            }, 1500);
        },
+       changeUserPokemon(){
+           setTimeout(() => {
+               this.userPokeFaint = true;
+               this.indexActualUserPoke = -1;
+               setTimeout(() => {
+                   this.userPokeFaint = false;
+               }, 1500);
+              // this.indexActualUserPoke++;
+               //let i = this.indexActualUserPoke + 1;
+              // this.changePokemon(i);
+           }, 1500);
+       },
        changePokemon(index){
                 console.log('change poke in menu',index);
                 this.ball=true;
                 this.indexActualUserPoke = -1;
+                this.noClick = true;
                 setTimeout(() => {
                     this.indexActualUserPoke = index;
                     this.ball=false;
+                    this.noClick = false;
                 }, 1700);
        },
        changePokemonInBattle(index){
                 this.getEnemyMove();
+                this.noClick = true;
                 setTimeout(() => {
                     this.changePokemon(index);
                 }, 2000);
