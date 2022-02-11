@@ -101,7 +101,6 @@ export default {
                 }, 1000);
                 setTimeout(() => {
                     this.moveUserText = false;
-                    //FUNZIONA
                     if(enemyFaint == 0){ 
                         this.faint = true;
                         this.pokeFainted = this.enemyPokemon.name;
@@ -117,7 +116,6 @@ export default {
                     }, 1000);
                     setTimeout(() => {
                         this.moveEnemyText = false;
-                        //FUNZIONA
                         if(userFaint == 0){
                         this.faint = true;
                         this.pokeFainted = this.userPokemon.name;
@@ -142,7 +140,6 @@ export default {
                 }, 1000);
                 setTimeout(() => {
                     this.moveEnemyText = false;
-                    //NON FUNZIONA
                     if(userFaint == 0){
                         this.faint = true;
                         this.pokeFainted = this.userPokemon.name;
@@ -158,7 +155,6 @@ export default {
                     }, 1000);
                     setTimeout(() => {
                         this.moveUserText = false;
-                        //FUNZIONA
                         if(enemyFaint == 0){
                         this.faint = true;
                         this.pokeFainted = this.enemyPokemon.name;
@@ -179,10 +175,8 @@ export default {
 
         let hp = document.querySelectorAll('.total-hp')[0];
         let barDmg  = document.querySelectorAll('.loss-hp')[0];
-        console.log('enemy hp is',hp,barDmg);
         let dmg = this.enemyPokemon.maxHp - this.enemyPokemon.hp;
         let diff = Math.floor((dmg*100) / this.enemyPokemon.maxHp);
-        console.log(dmg);
         if(diff == 100){
             setTimeout(() => {
                 hp.style.width = `100%`;
@@ -192,6 +186,7 @@ export default {
         hp.style.width = `${100 - diff}%`;
         barDmg.style.width = `${diff}%`;
         return this.enemyPokemon.hp;
+
         },
         getUserDamage(){
             this.userPokemon.hp -= this.enemyPokemon.moveSet[this.enemyMoveIndex].damage;

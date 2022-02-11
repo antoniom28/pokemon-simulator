@@ -118,6 +118,19 @@ export default {
             this.userGetDamage = true;
             setTimeout(() => {
                 this.userGetDamage = false;
+
+                 setTimeout(() => {
+                    let hp = document.querySelectorAll('.total-hp')[1];
+                    let barDmg  = document.querySelectorAll('.loss-hp')[1];
+                    let dmg = this.userPokemon[this.indexActualUserPoke].maxHp - this.userPokemon[this.indexActualUserPoke].hp;
+                    let diff = Math.floor((dmg*100) / this.userPokemon[this.indexActualUserPoke].maxHp);
+                    if(diff == 100){
+                            hp.style.width = `100%`;
+                            barDmg.style.width = `0%`;
+                    } 
+                    hp.style.width = `${100 - diff}%`;
+                    barDmg.style.width = `${diff}%`;
+                    }, 500);
             }, 500);
         }, 500);
 
@@ -161,6 +174,20 @@ export default {
                     this.indexActualUserPoke = index;
                     this.ball=false;
                     this.noClick = false;
+
+                    setTimeout(() => {
+                        let hp = document.querySelectorAll('.total-hp')[1];
+                    let barDmg  = document.querySelectorAll('.loss-hp')[1];
+                    let dmg = this.userPokemon[this.indexActualUserPoke].maxHp - this.userPokemon[this.indexActualUserPoke].hp;
+                    let diff = Math.floor((dmg*100) / this.userPokemon[this.indexActualUserPoke].maxHp);
+                    if(diff == 100){
+                            hp.style.width = `100%`;
+                            barDmg.style.width = `0%`;
+                    } 
+                    hp.style.width = `${100 - diff}%`;
+                    barDmg.style.width = `${diff}%`;
+                    }, 100);
+
                 }, 1700);
        },
        changePokemonInBattle(index){
@@ -168,7 +195,7 @@ export default {
                 this.noClick = true;
                 setTimeout(() => {
                     this.changePokemon(index);
-                }, 2000);
+                }, 3000);
        },
     },
     props: {
