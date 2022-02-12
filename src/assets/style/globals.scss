@@ -6,6 +6,9 @@
    box-sizing: border-box;
     padding: 0;
     margin: 0;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 main{
@@ -16,6 +19,7 @@ main{
 body{
     font-family: $main_font;
     color: $text_color;
+    background-color: #8bff8b;
 }
 
 a{

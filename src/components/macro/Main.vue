@@ -6,6 +6,8 @@
                 :indexActualEnemyPoke="indexActualEnemyPoke"
                 :enemyPokemon="enemyPokemon"
                 :enemySendAttack="enemySendAttack"
+                :specialEnemyMove="specialEnemyMove"
+                :enemySpecialName="enemySpecialName"
                 :enemyGetDamage="enemyGetDamage"
                 :enemyBall="enemyBall"
             />
@@ -17,6 +19,8 @@
                 :indexActualUserPoke="indexActualUserPoke"
                 :userPokemon="userPokemon"
                 :userSendAttack="userSendAttack"
+                :userSpecialMove="userSpecialMove"
+                :userSpecialName="userSpecialName"
                 :userGetDamage="userGetDamage"
                 :ball="ball"
             />
@@ -57,7 +61,11 @@ export default {
             actualUserMove: -1,
             actualEnemyMove: -1,
             userSendAttack: false,
+            userSpecialMove: false,
+            userSpecialName: "",
             enemySendAttack: false,
+            specialEnemyMove: false,
+            enemySpecialName: "",
             enemyGetDamage: false,
             userGetDamage: false,
             noClick: false,
@@ -87,13 +95,14 @@ export default {
              }
             return false;
         },
-       getMove(who){
+       getMove(who,userMove, enemyMove){
+           console.log(userMove,enemyMove);
            if(who == 'user'){
-                this.getUserMove();
+                this.getUserMove(userMove, enemyMove);
                 setTimeout(() => {      
                     if(this.controlEnemyHp())
                         return;
-                    this.getEnemyMove();
+                    this.getEnemyMove(userMove, enemyMove);
                     setTimeout(() => {
                         if(this.controlUserHp())
                         return;
@@ -101,11 +110,11 @@ export default {
                 }, 2000);
 
            } else{
-                this.getEnemyMove();
+                this.getEnemyMove(userMove, enemyMove);
                 setTimeout(() => {
                     if(this.controlUserHp())
                         return
-                    this.getUserMove();
+                    this.getUserMove(userMove, enemyMove);
                           
                     setTimeout(() => {
                         if(this.controlEnemyHp())
@@ -115,44 +124,60 @@ export default {
                 }, 2000);
            }
        },
-       getEnemyMove(){
-        this.enemySendAttack = true;
-        setTimeout(() => {
-            this.userGetDamage = true;
+       getEnemyMove(userMove, enemyMove){
+        if(enemyMove == null){
+            this.enemySendAttack = true;
             setTimeout(() => {
-                this.userGetDamage = false;
+                this.userGetDamage = true;
+                setTimeout(() => {
+                    this.userGetDamage = false;
 
-                 setTimeout(() => {
-                    let hp = document.querySelectorAll('.total-hp')[1];
-                    let barDmg  = document.querySelectorAll('.loss-hp')[1];
-                    let dmg = this.userPokemon[this.indexActualUserPoke].maxHp - this.userPokemon[this.indexActualUserPoke].hp;
-                    let diff = Math.floor((dmg*100) / this.userPokemon[this.indexActualUserPoke].maxHp);
-                    if(diff == 100){
-                            hp.style.width = `100%`;
-                            barDmg.style.width = `0%`;
-                    } 
-                    hp.style.width = `${100 - diff}%`;
-                    barDmg.style.width = `${diff}%`;
-                    }, 500);
+                }, 500);
             }, 500);
-        }, 500);
 
-        setTimeout(() => {
-            this.enemySendAttack = false;
-        }, 1000);
+            setTimeout(() => {
+                this.enemySendAttack = false;
+            }, 1000);
+        } else {
+            this.specialEnemyMove = true;
+            setTimeout(() => {
+                this.userGetDamage = true;
+                setTimeout(() => {
+                    this.userGetDamage = false;
+                }, 300);
+            }, 1000);
+            this.enemySpecialName = enemyMove;
+            setTimeout(() => {
+            this.specialEnemyMove = false;
+            }, 1000);
+        }
        },
-       getUserMove(){
-        this.userSendAttack = true;
-        setTimeout(() => {
-            this.enemyGetDamage = true;
+       getUserMove(userMove, enemyMove){
+        if(userMove == null){
+            this.userSendAttack = true;
             setTimeout(() => {
-                this.enemyGetDamage = false;
+                this.enemyGetDamage = true;
+                setTimeout(() => {
+                    this.enemyGetDamage = false;
+                }, 500);
             }, 500);
-        }, 500);
 
-        setTimeout(() => {
-            this.userSendAttack = false;
-        }, 1000);
+            setTimeout(() => {
+                this.userSendAttack = false;
+            }, 1000);
+        } else{
+            this.userSpecialMove = true;
+            setTimeout(() => {
+                this.enemyGetDamage = true;
+                setTimeout(() => {
+                    this.enemyGetDamage = false;
+                }, 300);
+            }, 1000);
+            this.userSpecialName = userMove;
+            setTimeout(() => {
+                this.userSpecialMove = false;
+            }, 1000);
+        }
        },
        changeEnemyPokemon(){
            setTimeout(() => {
@@ -203,6 +228,18 @@ export default {
        },
        changePokemonInBattle(index){
                 this.getEnemyMove();
+                setTimeout(() => {
+                    let hp = document.querySelectorAll('.total-hp')[1];
+                    let barDmg  = document.querySelectorAll('.loss-hp')[1];
+                    let dmg = this.userPokemon[this.indexActualUserPoke].maxHp - this.userPokemon[this.indexActualUserPoke].hp;
+                    let diff = Math.floor((dmg*100) / this.userPokemon[this.indexActualUserPoke].maxHp);
+                    if(diff == 100){
+                            hp.style.width = `100%`;
+                            barDmg.style.width = `0%`;
+                    } 
+                    hp.style.width = `${100 - diff}%`;
+                    barDmg.style.width = `${diff}%`;
+                }, 1501);
                 this.noClick = true;
                 setTimeout(() => {
                     this.changePokemon(index);

@@ -60,6 +60,10 @@ export default {
             pokeFainted: "",
         }
     },
+    props: {
+        userPokemon: Object,
+        enemyPokemon: Object,
+    },
     computed: {
         getUserNameText(){
             return this.userPokemon.name;
@@ -94,7 +98,12 @@ export default {
             let enemyFaint = 1;
             let userFaint = 1;
             setTimeout(() => {
-                this.$emit('getMove','user');
+            this.$emit(
+                'getMove',
+                'user',
+                this.userPokemon.moveSet[this.moveIndex].special,
+                this.enemyPokemon.moveSet[this.enemyMoveIndex].special
+            );
                 setTimeout(() => {
                     enemyFaint = this.getEnemyDamage();
                     console.log('enemy hp in moveset',enemyFaint);
@@ -133,7 +142,12 @@ export default {
             let enemyFaint = 1;
             let userFaint = 1;
             setTimeout(() => {
-                this.$emit('getMove','enemy');
+                this.$emit(
+                    'getMove',
+                    'enemy',
+                    this.userPokemon.moveSet[this.moveIndex].special,
+                    this.enemyPokemon.moveSet[this.enemyMoveIndex].special
+                );
                 setTimeout(() => {
                     userFaint = this.getUserDamage();
                     console.log('hp userO in moveset',userFaint);
@@ -213,10 +227,6 @@ export default {
             let random = Math.floor(Math.random()*4);
             this.enemyMoveIndex = random;
         },
-    },
-    props: {
-        userPokemon: Object,
-        enemyPokemon: Object,
     },
 }
 </script>

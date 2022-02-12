@@ -15,6 +15,11 @@
           alt=""
         />
 
+      <enemySpecialMove
+          v-if="specialEnemyMove"
+          :enemySpecialName="enemySpecialName"
+        />
+
     </span>
     <PokeInfo 
         v-if="indexActualEnemyPoke >= 0"
@@ -31,7 +36,7 @@
   </div>
 
   <div v-else class="field"> <!-- LEFT USER -->
-    <span :class="[getClass,{'attack' : userSendAttack}]">
+    <span :class="[getClass,{'attack' : userSendAttack && !userSpecialMove}]">
       <img
         :class="getClass"
         v-if="indexActualUserPoke >= 0"
@@ -45,6 +50,12 @@
           src="../../assets/img/damage.png"
           alt=""
         />
+
+        <specialMove
+          v-if="userSpecialMove"
+          :userSpecialName="userSpecialName"
+        />
+
     </span>
 
     <PokeInfo 
@@ -63,11 +74,15 @@
 
 <script>
 import PokeInfo from '../common/PokeInfo.vue'
+import specialMove from '../common/specialMove.vue'
+import enemySpecialMove from '../common/enemySpecialMove.vue'
 
 export default {
   name: "Field",
   components: {
       PokeInfo,
+      specialMove,
+      enemySpecialMove,
   },
   data() {
     return {};
@@ -81,7 +96,11 @@ export default {
     ball: Boolean,
     enemyBall: Boolean,
     userSendAttack: Boolean,
+    userSpecialMove: Boolean,
+    userSpecialName: String,
     enemySendAttack: Boolean,
+    specialEnemyMove: Boolean,
+    enemySpecialName: String,
     enemyGetDamage: Boolean,
     userGetDamage: Boolean,
   },
@@ -266,6 +285,7 @@ img.right {
   position: relative;
   width: 100%;
   height: 100%;
+  pointer-events: none;
 }
 
 .damage{
@@ -284,7 +304,8 @@ img.right {
 .field-terrain {
   width: 400px;
   height: 300px;
-  background-color: $field_color;
+  background-image: url(../../assets/img/prato1.jpg);
+  background-size: cover;
   border-radius: 50%;
   transform: rotateX(70deg);
   position: absolute;

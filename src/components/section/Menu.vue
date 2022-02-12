@@ -76,8 +76,8 @@ export default {
             console.log('menu option: ',index);
             this.menuOpt = index;
         },
-        getMoveOption(who){
-            this.$emit('getMove',who);
+        getMoveOption(who,userMove, enemyMove){
+            this.$emit('getMove',who,userMove,enemyMove);
         },
         changePoke(name,index){
             console.log('change poke:' ,name,index);

@@ -14,6 +14,7 @@
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-grass",
+                    "special": null,
                     "damage": 30,
                     "type": "Grass"
                 },
@@ -22,6 +23,7 @@
                     "pp": 20,
                     "totpp": 20,
                     "color": "set-box-grass",
+                    "special": null,
                     "damage": 30,
                     "type": "Grass"
                 },
@@ -30,6 +32,7 @@
                     "pp": 15,
                     "totpp": 15,
                     "color": "set-box-bug",
+                    "special": null,
                     "damage": 30,
                     "type": "Bug"
                 },
@@ -38,6 +41,7 @@
                     "pp": 10,
                     "totpp": 10,
                     "color": "set-box-poison",
+                    "special": null,
                     "damage": 30,
                     "type": "Poison"
                 }
@@ -57,14 +61,16 @@
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-fighting",
+                    "special": null,
                     "damage": 50,
                     "type": "Fighting"
                 },
                 {
-                    "name": "splash",
+                    "name": "palla infuocata",
                     "pp": 20,
                     "totpp": 20,
                     "color": "set-box-fire",
+                    "special": "palla infuocata",
                     "damage": 55,
                     "type": "Fire"
                 },
@@ -73,6 +79,7 @@
                     "pp": 15,
                     "totpp": 15,
                     "color": "set-box-dragon",
+                    "special": null,
                     "damage": 30,
                     "type": "Dragon"
                 },
@@ -81,6 +88,7 @@
                     "pp": 10,
                     "totpp": 10,
                     "color": "set-box-fire",
+                    "special": null,
                     "damage": 55,
                     "type": "Fire"
                 }
@@ -100,6 +108,7 @@
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-bug",
+                    "special": null,
                     "damage": 30,
                     "type": "Bug"
                 },
@@ -108,6 +117,7 @@
                     "pp": 20,
                     "totpp": 20,
                     "color": "set-box-normal",
+                    "special": null,
                     "damage": 5,
                     "type": "Normal"
                 },
@@ -116,6 +126,7 @@
                     "pp": 15,
                     "totpp": 15,
                     "color": "set-box-water",
+                    "special": null,
                     "damage": 30,
                     "type": "Water"
                 },
@@ -124,6 +135,7 @@
                     "pp": 10,
                     "totpp": 10,
                     "color": "set-box-water",
+                    "special": null,
                     "damage": 30,
                     "type": "Water"
                 }
@@ -139,10 +151,11 @@
             "speed": 230,
             "moveSet": [
                 {
-                    "name": "leaf",
+                    "name": "palla infuocata",
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-fire",
+                    "special": "palla infuocata",
                     "damage": 55,
                     "type": "Fire"
                 },
@@ -151,6 +164,7 @@
                     "pp": 20,
                     "totpp": 20,
                     "color": "set-box-normal",
+                    "special": null,
                     "damage": 5,
                     "type": "Normal"
                 },
@@ -159,6 +173,7 @@
                     "pp": 15,
                     "totpp": 15,
                     "color": "set-box-fire",
+                    "special": null,
                     "damage": 55,
                     "type": "Fire"
                 },
@@ -167,6 +182,7 @@
                     "pp": 10,
                     "totpp": 10,
                     "color": "set-box-fire",
+                    "special": null,
                     "damage": 55,
                     "type": "Fire"
                 }
@@ -186,22 +202,25 @@
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-fighting",
+                    "special": null,
                     "damage": 50,
                     "type": "Fighting"
                 },
                 {
-                    "name": "splash",
+                    "name": "pietramma",
                     "pp": 20,
                     "totpp": 20,
-                    "color": "set-box-psychic",
+                    "color": "set-box-rock",
+                    "special": "pietramma",
                     "damage": 10,
-                    "type": "Psychic"
+                    "type": "Rock"
                 },
                 {
                     "name": "action",
                     "pp": 15,
                     "totpp": 15,
                     "color": "set-box-normal",
+                    "special": null,
                     "damage": 5,
                     "type": "Normal"
                 },
@@ -210,6 +229,7 @@
                     "pp": 10,
                     "totpp": 10,
                     "color": "set-box-fighting",
+                    "special": null,
                     "damage": 50,
                     "type": "Fighting"
                 }
@@ -229,6 +249,7 @@
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-rock",
+                    "special": null,
                     "damage": 30,
                     "type": "Rock"
                 },
@@ -237,6 +258,7 @@
                     "pp": 20,
                     "totpp": 20,
                     "color": "set-box-steel",
+                    "special": null,
                     "damage": 60,
                     "type": "Steel"
                 },
@@ -245,6 +267,7 @@
                     "pp": 15,
                     "totpp": 15,
                     "color": "set-box-rock",
+                    "special": null,
                     "damage": 30,
                     "type": "Rock"
                 },
@@ -253,6 +276,7 @@
                     "pp": 10,
                     "totpp": 10,
                     "color": "set-box-ground",
+                    "special": null,
                     "damage": 90,
                     "type": "Ground"
                 }
@@ -266,40 +290,44 @@
             "name": "Leaf Dog",
             "thumb": "leafDog_enemy.png",
             "lv": 42,
-            "hp": 10,
-            "maxHp": 130,
+            "hp": 160,
+            "maxHp": 160,
             "gender": "F",
             "speed": 160,
             "moveSet": [
                 {
-                    "name": "leaf",
+                    "name": "palla infuocata",
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-red",
+                    "special": "palla infuocata",
                     "damage": 5,
                     "type": "Normal"
                 },
                 {
-                    "name": "splash",
+                    "name": "pietramma",
                     "pp": 20,
                     "totpp": 20,
                     "color": "set-box-red",
+                    "special": "pietramma",
                     "damage": 55,
                     "type": "Fire"
                 },
                 {
-                    "name": "action",
-                    "pp": 15,
-                    "totpp": 15,
+                    "name": "palla infuocata",
+                    "pp": 5,
+                    "totpp": 5,
                     "color": "set-box-red",
-                    "damage": 30,
-                    "type": "Water"
+                    "special": "palla infuocata",
+                    "damage": 5,
+                    "type": "Normal"
                 },
                 {
-                    "name": "boh",
+                    "name": "pietramma",
                     "pp": 10,
                     "totpp": 10,
                     "color": "set-box-red",
+                    "special": "pietramma",
                     "damage": 30,
                     "type": "Normal/Flame"
                 }
@@ -319,6 +347,7 @@
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 30,
                     "type": "Volante"
                 },
@@ -327,6 +356,7 @@
                     "pp": 20,
                     "totpp": 20,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 55,
                     "type": "Fire"
                 },
@@ -335,6 +365,7 @@
                     "pp": 15,
                     "totpp": 15,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 30,
                     "type": "Water"
                 },
@@ -343,6 +374,7 @@
                     "pp": 10,
                     "totpp": 10,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 30,
                     "type": "Normal/Flame"
                 }
@@ -362,6 +394,7 @@
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 5,
                     "type": "Normal"
                 },
@@ -370,6 +403,7 @@
                     "pp": 20,
                     "totpp": 20,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 55,
                     "type": "Fire"
                 },
@@ -378,6 +412,7 @@
                     "pp": 15,
                     "totpp": 15,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 30,
                     "type": "Water"
                 },
@@ -386,6 +421,7 @@
                     "pp": 10,
                     "totpp": 10,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 30,
                     "type": "Normal/Flame"
                 }
@@ -405,6 +441,7 @@
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 5,
                     "type": "Normal"
                 },
@@ -413,6 +450,7 @@
                     "pp": 20,
                     "totpp": 20,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 55,
                     "type": "Fire"
                 },
@@ -421,6 +459,7 @@
                     "pp": 15,
                     "totpp": 15,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 30,
                     "type": "Water"
                 },
@@ -429,6 +468,7 @@
                     "pp": 10,
                     "totpp": 10,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 30,
                     "type": "Normal/Flame"
                 }
@@ -448,6 +488,7 @@
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 5,
                     "type": "Normal"
                 },
@@ -456,6 +497,7 @@
                     "pp": 20,
                     "totpp": 20,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 55,
                     "type": "Fire"
                 },
@@ -464,6 +506,7 @@
                     "pp": 15,
                     "totpp": 15,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 30,
                     "type": "Water"
                 },
@@ -472,6 +515,7 @@
                     "pp": 10,
                     "totpp": 10,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 30,
                     "type": "Normal/Flame"
                 }
@@ -491,6 +535,7 @@
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 5,
                     "type": "Normal"
                 },
@@ -499,6 +544,7 @@
                     "pp": 20,
                     "totpp": 20,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 55,
                     "type": "Fire"
                 },
@@ -507,6 +553,7 @@
                     "pp": 15,
                     "totpp": 15,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 30,
                     "type": "Water"
                 },
@@ -515,6 +562,7 @@
                     "pp": 10,
                     "totpp": 10,
                     "color": "set-box-red",
+                    "special": null,
                     "damage": 30,
                     "type": "Normal/Flame"
                 }
