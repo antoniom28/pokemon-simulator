@@ -15,6 +15,14 @@
           alt=""
         />
     </div>
+
+    <div v-else-if="enemySpecialName == 'mega salto'" class="mega-salto">
+        <div class="special-div"></div>
+    </div>
+
+    <div v-else-if="enemySpecialName == 'bomba velenosa'" class="bomba-velenosa">
+        <div class="bomba-velenosa-div"></div>
+    </div>
 </template>
 
 <script>
@@ -36,12 +44,55 @@ img{
     width: 60px;
 }
 
+.bomba-velenosa{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(255, 70, 255);
+    position: absolute;
+    transform: scale(0.4);
+    top: 55px;
+    left: -15px;
+    animation: bomba-velenosa 1.05s linear;
+}
+
+@keyframes bomba-velenosa {
+    70%{
+        transform: scale(0.4);
+        top: 410px;
+        left: -365px;
+    }
+    100%{
+        transform: scale(4) rotateX(70deg);
+        top: 410px;
+        left: -365px;
+    }
+}
+
+.mega-salto{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: skyblue;
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    animation: mega-salto 1.05s linear;
+}
+
+@keyframes mega-salto {
+    100%{
+        top: 330px; 
+        left: -370px;
+    }
+}
+
 .palla-infuocata{
     position: absolute;
     top: 55px;
     left: -15px;
     transform: scale(0.2) rotate(180deg);
-    animation: palla-infuocata 1s linear;
+    animation: palla-infuocata 1.05s linear;
 
     img{
     width: 100px;
@@ -49,11 +100,6 @@ img{
 }
 
 @keyframes palla-infuocata {
-   0%{
-       transform: scale(0.2) rotate(180deg);
-        top: 55px;
-        left: -15px;
-   } 
    30%{
        transform: scale(0.5) rotate(180deg);
    }
@@ -77,10 +123,6 @@ img{
 }
 
 @keyframes pietramma {
-   0%{
-        top: 170px;
-        left: -396px;
-   }
    100%{
         top: 340px;
         left: -396px;

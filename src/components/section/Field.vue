@@ -1,9 +1,13 @@
 <template>
 
-  <div v-if="getClass == 'right enemy'" class="field">
+  <div 
+    v-if="getClass == 'right enemy'" 
+    class="field"
+    :class="{'shake' : userSpecialName == 'scuoti terra'}"
+  >
     <span :class="[getClass,{'attack' : enemySendAttack}]"> 
         <img
-          :class="getClass"
+          :class="[getClass,{'opacity-move' : enemySpecialName == 'mega salto'}]"
           v-if="indexActualEnemyPoke >= 0"
           :src="getEnemyThumb"
           alt=""
@@ -35,10 +39,10 @@
     <div class="field-terrain" :class="getClass"></div>
   </div>
 
-  <div v-else class="field"> <!-- LEFT USER -->
+  <div v-else class="field" :class="{'shake' : enemySpecialName == 'scuoti terra'}"> <!-- LEFT USER -->
     <span :class="[getClass,{'attack' : userSendAttack && !userSpecialMove}]">
       <img
-        :class="getClass"
+        :class="[getClass,{'opacity-move' : userSpecialName == 'mega salto'}]"
         v-if="indexActualUserPoke >= 0"
         :src="getThumb"
         alt=""
@@ -124,6 +128,22 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../assets/style/partials/variables.scss";
+.opacity-move{
+  opacity: 0;
+}
+
+.shake{
+  animation: shake 0.34s linear 3;
+}
+
+@keyframes shake {
+  0%{transform: translateY(10px);}
+  25%{transform: translateY(0px);}
+  50%{transform: translateY(10px);}
+  75%{transform: translateY(0px);}
+  100%{transform: translateY(10px);}
+}
+
 .ball{
   position: absolute;
   top: 70px;

@@ -8,6 +8,7 @@
                 :enemySendAttack="enemySendAttack"
                 :specialEnemyMove="specialEnemyMove"
                 :enemySpecialName="enemySpecialName"
+                :userSpecialName="userSpecialName"
                 :enemyGetDamage="enemyGetDamage"
                 :enemyBall="enemyBall"
             />
@@ -21,6 +22,7 @@
                 :userSendAttack="userSendAttack"
                 :userSpecialMove="userSpecialMove"
                 :userSpecialName="userSpecialName"
+                :enemySpecialName="enemySpecialName"
                 :userGetDamage="userGetDamage"
                 :ball="ball"
             />
@@ -149,6 +151,7 @@ export default {
             this.enemySpecialName = enemyMove;
             setTimeout(() => {
             this.specialEnemyMove = false;
+            this.enemySpecialName = "";
             }, 1000);
         }
        },
@@ -176,6 +179,7 @@ export default {
             this.userSpecialName = userMove;
             setTimeout(() => {
                 this.userSpecialMove = false;
+                this.userSpecialName = "";
             }, 1000);
         }
        },
@@ -198,7 +202,7 @@ export default {
                this.indexActualUserPoke = -1;
                setTimeout(() => {
                    this.userPokeFaint = false;
-               }, 1500);
+               }, 100);
            }, 1500);
        },
        changePokemon(index){
@@ -268,6 +272,7 @@ export default {
     height: 150px;
     background-color: rgb(211, 211, 211);
     position: absolute;
+    z-index: 9999;
     bottom: 0;
     left: 0;
 }

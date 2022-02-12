@@ -19,13 +19,13 @@
                     "type": "Grass"
                 },
                 {
-                    "name": "splash",
+                    "name": "scuoti terra",
                     "pp": 20,
                     "totpp": 20,
-                    "color": "set-box-grass",
-                    "special": null,
+                    "color": "set-box-ground",
+                    "special": "scuoti terra",
                     "damage": 30,
-                    "type": "Grass"
+                    "type": "Ground"
                 },
                 {
                     "name": "action",
@@ -37,11 +37,11 @@
                     "type": "Bug"
                 },
                 {
-                    "name": "boh",
+                    "name": "bomba velenosa",
                     "pp": 10,
                     "totpp": 10,
                     "color": "set-box-poison",
-                    "special": null,
+                    "special": "bomba velenosa",
                     "damage": 30,
                     "type": "Poison"
                 }
@@ -57,11 +57,11 @@
             "speed": 60,
             "moveSet": [
                 {
-                    "name": "volo",
+                    "name": "mega salto",
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-fighting",
-                    "special": null,
+                    "special": "mega salto",
                     "damage": 50,
                     "type": "Fighting"
                 },
@@ -198,11 +198,11 @@
             "speed": 130,
             "moveSet": [
                 {
-                    "name": "leaf",
+                    "name": "mega salto",
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-fighting",
-                    "special": null,
+                    "special": "mega salto",
                     "damage": 50,
                     "type": "Fighting"
                 },
@@ -245,11 +245,11 @@
             "speed": 70,
             "moveSet": [
                 {
-                    "name": "leaf",
+                    "name": "pietramma",
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-rock",
-                    "special": null,
+                    "special": "pietramma",
                     "damage": 30,
                     "type": "Rock"
                 },
@@ -272,11 +272,11 @@
                     "type": "Rock"
                 },
                 {
-                    "name": "boh",
+                    "name": "scuoti terra",
                     "pp": 10,
                     "totpp": 10,
                     "color": "set-box-ground",
-                    "special": null,
+                    "special": "scuoti terra",
                     "damage": 90,
                     "type": "Ground"
                 }
@@ -314,20 +314,20 @@
                     "type": "Fire"
                 },
                 {
-                    "name": "palla infuocata",
+                    "name": "mega salto",
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-red",
-                    "special": "palla infuocata",
+                    "special": "mega salto",
                     "damage": 5,
                     "type": "Normal"
                 },
                 {
-                    "name": "pietramma",
+                    "name": "bomba velenosa",
                     "pp": 10,
                     "totpp": 10,
                     "color": "set-box-red",
-                    "special": "pietramma",
+                    "special": "bomba velenosa",
                     "damage": 30,
                     "type": "Normal/Flame"
                 }
@@ -343,11 +343,11 @@
             "speed": 90,
             "moveSet": [
                 {
-                    "name": "volo",
+                    "name": "scuoti terra",
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-red",
-                    "special": null,
+                    "special": "scuoti terra",
                     "damage": 30,
                     "type": "Volante"
                 },
@@ -361,11 +361,11 @@
                     "type": "Fire"
                 },
                 {
-                    "name": "action",
+                    "name": "scuoti terra",
                     "pp": 15,
                     "totpp": 15,
                     "color": "set-box-red",
-                    "special": null,
+                    "special": "scuoti terra",
                     "damage": 30,
                     "type": "Water"
                 },
