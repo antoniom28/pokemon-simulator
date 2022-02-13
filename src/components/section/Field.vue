@@ -3,7 +3,7 @@
   <div 
     v-if="getClass == 'right enemy'" 
     class="field"
-    :class="{'shake' : userSpecialName == 'scuoti terra'}"
+    :class="{'shake' : userSpecialName == 'scuoti terra','spawn' : spawnField}"
   >
     <span :class="[getClass,{'attack' : enemySendAttack}]"> 
         <img
@@ -39,7 +39,7 @@
     <div class="field-terrain" :class="getClass"></div>
   </div>
 
-  <div v-else class="field" :class="{'shake' : enemySpecialName == 'scuoti terra'}"> <!-- LEFT USER -->
+  <div v-else class="field" :class="{'shake' : enemySpecialName == 'scuoti terra','spawn' : spawnField}"> <!-- LEFT USER -->
     <span :class="[getClass,{'attack' : userSendAttack && !userSpecialMove}]">
       <img
         :class="[getClass,{'opacity-move' : userSpecialName == 'mega salto'}]"
@@ -92,6 +92,7 @@ export default {
     return {};
   },
   props: {
+    spawnField: Boolean,
     getClass: String,
     userPokemon: Array,
     indexActualUserPoke: Number,
@@ -128,6 +129,19 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../assets/style/partials/variables.scss";
+.enemy-field .field.spawn{
+  transform: translateX(800px);
+  animation: battle-start 1.5s 0.5s linear forwards;
+}
+.user-field .field.spawn{
+  transform: translateX(-800px);
+  animation: battle-start 1.5s 0.5s linear forwards;
+}
+
+@keyframes battle-start {
+  100%{ transform: translateX(0px); }
+}
+
 .opacity-move{
   opacity: 0;
 }
@@ -158,7 +172,7 @@ export default {
 
 .ball.enemy{
   left: unset;
-  right: 30px;
+  right: -50px;
   animation: unset;
   animation: throwR 1.5s linear forwards; 
   
@@ -171,22 +185,22 @@ export default {
   0%{
     transform: rotate(0deg);
     top: 70px;
-    right: 30px;
+    right: -50px;
   }
   10%{
     transform: rotate(-90deg);
     top: 75px;
-    right: 30px;
+    right: -27.5px;
   }
   20%{
     transform: rotate(-180deg);
     top: 80px;
-    right: 30px;
+    right: -5px;
   }
   30%{
     transform: rotate(-270deg);
     top: 85px;
-    right: 30px;
+    right: 17.5px;
   }
   40%{
     transform: rotate(-330deg);

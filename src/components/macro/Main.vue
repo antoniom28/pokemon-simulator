@@ -1,279 +1,222 @@
 <template>
-    <main class="container">
-        <div class="enemy-field">
-            <Field 
-                get-class="right enemy"
-                :indexActualEnemyPoke="indexActualEnemyPoke"
-                :enemyPokemon="enemyPokemon"
-                :enemySendAttack="enemySendAttack"
-                :specialEnemyMove="specialEnemyMove"
-                :enemySpecialName="enemySpecialName"
-                :userSpecialName="userSpecialName"
-                :enemyGetDamage="enemyGetDamage"
-                :enemyBall="enemyBall"
-            />
+    <main id="main-field-no-battle" class="main" :class="pokeFindend">
+        <div class="main-field">
+          <!--  <div 
+                class="ground"
+                v-for="(ground,index) in 1320"
+                :key="index"
+            ></div> -->
         </div>
 
-        <div class="user-field">
-            <Field 
-                get-class="left user"
-                :indexActualUserPoke="indexActualUserPoke"
-                :userPokemon="userPokemon"
-                :userSendAttack="userSendAttack"
-                :userSpecialMove="userSpecialMove"
-                :userSpecialName="userSpecialName"
-                :enemySpecialName="enemySpecialName"
-                :userGetDamage="userGetDamage"
-                :ball="ball"
-            />
+        <div 
+            v-for="(elem,index) in grassElem" 
+            :key="index" 
+            :style="{top: `${elem.top}px`, left: `${elem.left}px`}" 
+            class="grass-camp"
+        >
+            <Grass :col="elem.col" :row="elem.row" :grassW="elem.w" :grassH="elem.h" />
+        </div>
 
-            <div class="menu">
-                <Menu 
-                    @getMove="getMove"
-                    @changePoke="changePokemon"
-                    @changePokeInBattle="changePokemonInBattle"
-                    :userPokemon="userPokemon"
-                    :enemyPokemon="enemyPokemon"
-                    :indexActualEnemyPoke="indexActualEnemyPoke"
-                    :noClick="noClick"
-                    :userPokeFaint="userPokeFaint"
-                    :allUserFaint="allUserFaint"
-                />
-            </div>
+
+        <div id="pg" class="temp-pg">
+            <img :src="require('../../assets/img/trainer/' + walk)" alt="">
         </div>
     </main>
 </template>
 
 <script>
-import Field from '../section/Field.vue'
-import Menu from '../section/Menu.vue'
-import pokeFile from '../../assets/data/pokeFile.json'
+import Grass from "../common/Grass.vue";
 
 export default {
-    name: 'Main',
+    name: "Main",
+    components:{
+        Grass,
+    },
     data(){
         return{
-            userPokemon: pokeFile.pokemon,
-            enemyPokemon: pokeFile.enemypokemon,
-            indexActualUserPoke: -1,
-            indexActualEnemyPoke: 0,
-            indexNextEnemyPoke: 1,
-            ball: false,
-            enemyBall: false,
-            actualUserMove: -1,
-            actualEnemyMove: -1,
-            userSendAttack: false,
-            userSpecialMove: false,
-            userSpecialName: "",
-            enemySendAttack: false,
-            specialEnemyMove: false,
-            enemySpecialName: "",
-            enemyGetDamage: false,
-            userGetDamage: false,
-            noClick: false,
-            userPokeFaint: false,
-            allUserFaint: [],
-            allEnemyFaint: [],
+            walk: "bottom_0.png",
+            pokeFindend: "",
+            pgLeft: 0,
+            pgTop: 0,
+            grassElem: [
+                {   
+                    col: 10,
+                    row: 6,
+                    top: 60,
+                    left: 0,
+                    w: 20 * 10,
+                    h: 20 * 6,
+                },
+                {   
+                    col: 6,
+                    row: 7,
+                    top: 300,
+                    left: 20,
+                    w: 20 * 6,
+                    h: 20 * 7,
+                },
+                {   
+                    col: 4,
+                    row: 4,
+                    top: 300,
+                    left: 700,
+                    w: 20 * 4,
+                    h: 20 * 4,
+                },
+                {   
+                    col: 8,
+                    row: 2,
+                    top: 600,
+                    left: 500,
+                    w: 20 * 8,
+                    h: 20 * 2,
+                },
+                {   
+                    col: 2,
+                    row: 2,
+                    top: 20,
+                    left: 500,
+                    w: 20 * 2,
+                    h: 20 * 2,
+                },
+            ]
         }
     },
-    methods: {
-        controlEnemyHp(){
-         let faint = this.enemyPokemon[this.indexActualEnemyPoke].hp;
-         console.log('is enemy faint?',faint);
-             if(faint == 0){
-             this.changeEnemyPokemon();
-             return true;
-             }
-            return false;
-        },
-        controlUserHp(){
-         let faint = this.userPokemon[this.indexActualUserPoke].hp;
-         console.log('is user faint?',faint);
-             if(faint == 0){
-             this.allUserFaint.push(this.userPokemon[this.indexActualUserPoke].name);
-             console.log(this.allUserFaint);
-             this.changeUserPokemon();
-             return true;
-             }
-            return false;
-        },
-       getMove(who,userMove, enemyMove){
-           console.log(userMove,enemyMove);
-           if(who == 'user'){
-                this.getUserMove(userMove, enemyMove);
-                setTimeout(() => {      
-                    if(this.controlEnemyHp())
-                        return;
-                    this.getEnemyMove(userMove, enemyMove);
-                    setTimeout(() => {
-                        if(this.controlUserHp())
-                        return;
-                    }, 2000);
-                }, 2000);
-
-           } else{
-                this.getEnemyMove(userMove, enemyMove);
-                setTimeout(() => {
-                    if(this.controlUserHp())
-                        return
-                    this.getUserMove(userMove, enemyMove);
-                          
-                    setTimeout(() => {
-                        if(this.controlEnemyHp())
-                        return;
-                    }, 2000);
-
-                }, 2000);
-           }
-       },
-       getEnemyMove(userMove, enemyMove){
-        if(enemyMove == null){
-            this.enemySendAttack = true;
-            setTimeout(() => {
-                this.userGetDamage = true;
-                setTimeout(() => {
-                    this.userGetDamage = false;
-
-                }, 500);
-            }, 500);
-
-            setTimeout(() => {
-                this.enemySendAttack = false;
-            }, 1000);
-        } else {
-            this.specialEnemyMove = true;
-            setTimeout(() => {
-                this.userGetDamage = true;
-                setTimeout(() => {
-                    this.userGetDamage = false;
-                }, 300);
-            }, 1000);
-            this.enemySpecialName = enemyMove;
-            setTimeout(() => {
-            this.specialEnemyMove = false;
-            this.enemySpecialName = "";
-            }, 1000);
-        }
-       },
-       getUserMove(userMove, enemyMove){
-        if(userMove == null){
-            this.userSendAttack = true;
-            setTimeout(() => {
-                this.enemyGetDamage = true;
-                setTimeout(() => {
-                    this.enemyGetDamage = false;
-                }, 500);
-            }, 500);
-
-            setTimeout(() => {
-                this.userSendAttack = false;
-            }, 1000);
-        } else{
-            this.userSpecialMove = true;
-            setTimeout(() => {
-                this.enemyGetDamage = true;
-                setTimeout(() => {
-                    this.enemyGetDamage = false;
-                }, 300);
-            }, 1000);
-            this.userSpecialName = userMove;
-            setTimeout(() => {
-                this.userSpecialMove = false;
-                this.userSpecialName = "";
-            }, 1000);
-        }
-       },
-       changeEnemyPokemon(){
-           setTimeout(() => {
-               this.indexActualEnemyPoke = -1;
-                this.enemyBall = true;
-                    this.noClick = true;
-                    setTimeout(() => {
-                            this.indexActualEnemyPoke = this.indexNextEnemyPoke;
-                            this.indexNextEnemyPoke++;
-                            this.enemyBall=false;
-                            this.noClick = false;
-                        }, 1700);
-           }, 1500);
-       },
-       changeUserPokemon(){
-           setTimeout(() => {
-               this.userPokeFaint = true;
-               this.indexActualUserPoke = -1;
-               setTimeout(() => {
-                   this.userPokeFaint = false;
-               }, 100);
-           }, 1500);
-       },
-       changePokemon(index){
-                console.log('change poke in menu',index);
-                this.ball=true;
-                this.indexActualUserPoke = -1;
-                this.noClick = true;
-                setTimeout(() => {
-                    this.indexActualUserPoke = index;
-                    this.ball=false;
-                    this.noClick = false;
-
-                    setTimeout(() => {
-                        let hp = document.querySelectorAll('.total-hp')[1];
-                    let barDmg  = document.querySelectorAll('.loss-hp')[1];
-                    let dmg = this.userPokemon[this.indexActualUserPoke].maxHp - this.userPokemon[this.indexActualUserPoke].hp;
-                    let diff = Math.floor((dmg*100) / this.userPokemon[this.indexActualUserPoke].maxHp);
-                    if(diff == 100){
-                            hp.style.width = `100%`;
-                            barDmg.style.width = `0%`;
-                    } 
-                    hp.style.width = `${100 - diff}%`;
-                    barDmg.style.width = `${diff}%`;
-                    }, 100);
-
-                }, 1700);
-       },
-       changePokemonInBattle(index){
-                this.getEnemyMove();
-                setTimeout(() => {
-                    let hp = document.querySelectorAll('.total-hp')[1];
-                    let barDmg  = document.querySelectorAll('.loss-hp')[1];
-                    let dmg = this.userPokemon[this.indexActualUserPoke].maxHp - this.userPokemon[this.indexActualUserPoke].hp;
-                    let diff = Math.floor((dmg*100) / this.userPokemon[this.indexActualUserPoke].maxHp);
-                    if(diff == 100){
-                            hp.style.width = `100%`;
-                            barDmg.style.width = `0%`;
-                    } 
-                    hp.style.width = `${100 - diff}%`;
-                    barDmg.style.width = `${diff}%`;
-                }, 1501);
-                this.noClick = true;
-                setTimeout(() => {
-                    this.changePokemon(index);
-                }, 3000);
-       },
+    created: function(){
+    window.addEventListener('keydown',this.grassControl);
     },
-    props: {
+    beforeDestroy: function(){
+        //window.removeEventListener('keydown',this.grassControl);
     },
-    components: {
-        Field,
-        Menu,
+    props: {},
+    methods:{
+        grassControl(){
+        let pg = document.getElementById('pg').style;
+        if(event.key == 'w'){
+            if(this.pgTop != 0){
+                if(this.walk == "top_2.png")
+                    this.walk = "top_1.png";
+                else
+                    this.walk = "top_2.png";
+                this.pgTop -=20;
+                pg.top = `${this.pgTop}px`;
+            } else{
+                this.walk = "top_0.png";
+            }
+        }
+        if(event.key == 's'){
+            if(this.pgTop != 640 - 20){
+                if(this.walk == "bottom_2.png")
+                    this.walk = "bottom_1.png";
+                else
+                    this.walk = "bottom_2.png";
+                this.pgTop +=20;
+                pg.top = `${this.pgTop}px`;
+            } else{
+                this.walk = "bottom_0.png";
+            }
+        }
+        if(event.key == 'a'){
+            if(this.pgLeft != 0){
+                if(this.walk == "left_2.png")
+                    this.walk = "left_1.png";
+                else
+                    this.walk = "left_2.png";
+                this.pgLeft -=20;
+                pg.left = `${this.pgLeft}px`;
+            } else{
+                this.walk = "left_0.png";
+            }
+        }
+        if(event.key == 'd'){
+            if(this.pgLeft != 800 - 20){
+                if(this.walk == "right_2.png")
+                    this.walk = "right_1.png";
+                else
+                    this.walk = "right_2.png";
+                this.pgLeft +=20;
+                pg.left = `${this.pgLeft}px`;
+            } else{
+                this.walk = "right_0.png";
+            }
+        }
+
+        for(let i=0; i<this.grassElem.length; i++){
+        let startGrassX = this.grassElem[i].left;
+        let endGrassX = this.grassElem[i].left + this.grassElem[i].w - 20;
+        let startGrassY = this.grassElem[i].top;
+        let endGrassY = this.grassElem[i].top + this.grassElem[i].h - 20;
+        if((this.pgTop >= startGrassY && this.pgTop <= endGrassY)
+         && (this.pgLeft >= startGrassX && this.pgLeft <= endGrassX)){
+            console.log('è sull erba');
+            let random = Math.floor(Math.random()*11);
+            console.log(random);
+            if(random == 6){
+                window.removeEventListener('keydown',this.grassControl);
+                this.pokeFindend = 'poke-finded';
+                setTimeout(() => {
+                    this.$emit('pokeFinded');
+                }, 3499);
+                }
+            break;
+            }
+        }
+    }
     },
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../../assets/style/partials/variables.scss';
-
-.enemy-field, .user-field{
-    height: 50%;
-    background-color: rgb(173, 255, 173);
+.main{
     position: relative;
+    background-color: rgb(115, 155, 4);;
 }
-.menu{
-    width: 100%;
-    height: 150px;
-    background-color: rgb(211, 211, 211);
+
+[class*="grass-camp"]{
     position: absolute;
-    z-index: 9999;
-    bottom: 0;
+}
+
+.main-field{
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    top: 0;
     left: 0;
+}
+
+.ground{
+    width: 20px;
+    height: 20px;
+    box-shadow: 0 0 0 0.5px black;
+    background-color: grey;
+}
+
+.temp-pg{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    transform: scale(1.2) translate(0px , 10px);
+
+    img{
+        width: 20px;
+    }
+}
+
+#main-field-no-battle.poke-finded{
+    animation: finded 3s 0.5s linear;
+}
+
+@keyframes finded {
+    0%{ filter: brightness(0.2); }
+    25%{ filter: brightness(1); }
+    50%{ filter: brightness(0.2); transform: scale(1) rotate(0deg);}
+    100%{
+        filter: unset;
+        transform: scale(0.01) rotate(360deg);
+    }
 }
 </style>

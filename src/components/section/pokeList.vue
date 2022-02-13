@@ -54,7 +54,6 @@ export default {
             this.selectedPoke = this.allPokemon[index].name;
             this.indexSelectedPoke = index;
             console.log('pokemon :',index);
-            //emit
         },
         changePoke(){
             this.$emit('changePoke',this.selectedPoke,this.indexSelectedPoke);

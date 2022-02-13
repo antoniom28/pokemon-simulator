@@ -1,31 +1,33 @@
 <template>
-  <div id="app">
-   <!-- <Header /> -->
-
-    <Main />
-
-   <!-- <Footer /> -->
+  <div id="app" :class="{'in-battle' : startBattle}">
+    <div class="first-container">
+      <MainBattle v-if="startBattle" @endBattle="startBattle = false"/>
+      <Main v-else @pokeFinded="startBattle = true"/>
+    </div>
   </div>
 </template>
 
 <script>
-//import axios from "axios";
+import MainBattle from "./components/macro/MainBattle.vue";
 import Main from "./components/macro/Main.vue";
-//import Footer from "./components/macro/Footer.vue";
-//import Header from "./components/macro/Header.vue";
 
 export default {
   name: "App",
   data() {
     return {
+        startBattle: false,
     };
   },
-  methods: {
+  created: function(){
+    /*setTimeout(() => {
+      this.startBattle = true;
+    }, 2000);*/
   },
+  methods: {
+    },
   components: {
+    MainBattle,
     Main,
-    //Footer,
-    //Header,
   },
 };
 </script>
@@ -36,8 +38,18 @@ export default {
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  width: 800px;
-  margin: 0 auto;
-  height: 654px;
+}
+
+.in-battle{
+   background-color: #8bff8b;
+}
+
+.first-container{
+    width: 800px;
+    overflow: hidden;
+    margin: 0 auto;
+    height: 640px;
+    font-family: $main_font;
+    color: $text_color;
 }
 </style>

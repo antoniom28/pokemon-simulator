@@ -75,6 +75,8 @@ export default {
         getMenuOption(index){
             console.log('menu option: ',index);
             this.menuOpt = index;
+            if(index == 3)
+                this.$emit('runAway');
         },
         getMoveOption(who,userMove, enemyMove){
             this.$emit('getMove',who,userMove,enemyMove);
