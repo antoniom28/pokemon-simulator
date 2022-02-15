@@ -2,7 +2,7 @@
   <div id="app" :class="{'in-battle' : startBattle}">
     <div class="first-container">
       <MainBattle v-if="startBattle" @endBattle="startBattle = false"/>
-      <Main v-else @pokeFinded="startBattle = true"/>
+      <Main v-else @pokeFinded="start" :prevPgLeft="pgLeft" :prevPgTop="pgTop"/>
     </div>
   </div>
 </template>
@@ -16,14 +16,17 @@ export default {
   data() {
     return {
         startBattle: false,
+        pgTop: 0,
+        pgLeft: 0,
     };
   },
-  created: function(){
-    /*setTimeout(() => {
-      this.startBattle = true;
-    }, 2000);*/
-  },
   methods: {
+      start(pgLeft, pgTop){
+        console.log(pgLeft,pgTop);
+        this.pgLeft = pgLeft;
+        this.pgTop = pgTop;
+        this.startBattle = true;
+      },
     },
   components: {
     MainBattle,

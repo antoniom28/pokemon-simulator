@@ -1,5 +1,5 @@
 <template>
-    <main class="fill-grass">
+    <div class="fill-grass">
         <div class="div-grass" :style="{height: `${grassH}px`, width: `${grassW}px`}" >
             <div 
                 v-for="(elem,index) in col*row"
@@ -8,7 +8,7 @@
             >
             </div>
         </div>
-    </main>
+    </div>
 </template>
 
 <script>

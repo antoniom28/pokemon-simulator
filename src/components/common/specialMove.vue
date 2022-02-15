@@ -23,6 +23,34 @@
     <div v-else-if="userSpecialName == 'bomba velenosa'" class="bomba-velenosa">
         <div class="bomba-velenosa-div"></div>
     </div>
+
+    <div v-else-if="userSpecialName == 'shuriken erboso'" class="shuriken-erboso">
+        <img
+          class="special"
+          src="../../assets/img/move/shurikenerboso.png"
+          alt=""
+        />
+    </div>
+
+    <div v-else-if="userSpecialName == 'pioggia di foglie'" class="pioggia-di-foglie">
+        <img
+          class="special-1"
+          src="../../assets/img/move/pioggiadifoglie.png"
+          alt=""
+        />
+
+        <img
+          class="special-2"
+          src="../../assets/img/move/pioggiadifoglie.png"
+          alt=""
+        />
+
+        <img
+          class="special-3"
+          src="../../assets/img/move/pioggiadifoglie.png"
+          alt=""
+        />
+    </div>
 </template>
 
 <script>
@@ -43,6 +71,62 @@ export default {
 img{
     width: 60px;
 }
+
+.pioggia-di-foglie{
+    position: absolute;
+    transform: rotate(25deg);
+    top: -55px;
+    left: 135px;
+    animation: pioggia-di-foglie 1.05s linear;
+
+    img{
+    width: 100px;
+    }
+
+    img.special-2{
+        transform: translate(-23px, -12px);
+    }
+    img.special-3{
+        transform: translate(-46px, -24px);
+    }
+}
+
+@keyframes pioggia-di-foglie {
+   100%{
+        top: -360px;
+        left: 450px;
+   }
+}
+
+.shuriken-erboso{
+    position: absolute;
+    top: -25px;
+    left: 90px;
+    animation: shuriken-erboso 1.05s linear;
+    transform: rotate(0deg);
+    img{
+    width: 150px;
+    }
+}
+
+@keyframes shuriken-erboso {
+    30%{
+        transform: rotate(360deg)
+    }
+    50%{
+        top: -290px;
+        left: 380px;
+    }
+   70%{
+       transform: rotate(720deg)
+   }
+   100%{
+       transform: rotate(1080deg);
+        top: -25px;
+        left: 90px;
+   }
+}
+
 .bomba-velenosa{
     width: 50px;
     height: 50px;

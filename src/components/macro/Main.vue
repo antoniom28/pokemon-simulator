@@ -1,20 +1,21 @@
 <template>
     <main id="main-field-no-battle" class="main" :class="pokeFindend">
-        <div class="main-field">
-          <!--  <div 
-                class="ground"
-                v-for="(ground,index) in 1320"
-                :key="index"
-            ></div> -->
-        </div>
-
         <div 
             v-for="(elem,index) in grassElem" 
-            :key="index" 
+            :key="'a'+index" 
             :style="{top: `${elem.top}px`, left: `${elem.left}px`}" 
             class="grass-camp"
         >
             <Grass :col="elem.col" :row="elem.row" :grassW="elem.w" :grassH="elem.h" />
+        </div>
+
+        <div 
+            v-for="(elem,index) in blockObj" 
+            :key="'b'+index" 
+            :style="{top: `${elem.top}px`, left: `${elem.left}px`}" 
+            class="block-camp"
+        >
+            <BlockElem :grassW="elem.w" :grassH="elem.h" />
         </div>
 
 
@@ -26,18 +27,68 @@
 
 <script>
 import Grass from "../common/Grass.vue";
+import BlockElem from "../common/BlockElem.vue";
 
 export default {
     name: "Main",
     components:{
         Grass,
+        BlockElem,
+    },
+    props: {
+        prevPgLeft: Number,
+        prevPgTop: Number,
     },
     data(){
         return{
             walk: "bottom_0.png",
             pokeFindend: "",
+            prevPgPos: false,
             pgLeft: 0,
             pgTop: 0,
+            blockObj: [
+                {
+                    top: 500,
+                    left: 20,
+                    w: 100,
+                    h: 100,
+                    startX: 20 + 20, 
+                    endX: 20 + 100 - 40, 
+                    startY: 500 + 40, 
+                    endY: 500 + 100 - 20,
+                },
+                {
+                    top: 300,
+                    left: 260,
+                    w: 100,
+                    h: 100,
+                    startX: 260 + 20, 
+                    endX: 260 + 100 - 40, 
+                    startY: 300 + 40, 
+                    endY: 300 + 100 - 20,
+                },
+                {
+                    top: 300,
+                    left: 380,
+                    w: 100,
+                    h: 100,
+                    startX: 380 + 20, 
+                    endX: 380 + 100 - 40, 
+                    startY: 300 + 40, 
+                    endY: 300 + 100 - 20,
+                },
+                {
+                    top: 20,
+                    left: 120,
+                    w: 100,
+                    h: 100,
+                    startX: 120 + 20, 
+                    endX: 120 + 100 - 40, 
+                    startY: 20 + 40, 
+                    endY: 20 + 100 - 20,
+                },
+                
+            ],
             grassElem: [
                 {   
                     col: 10,
@@ -82,60 +133,123 @@ export default {
             ]
         }
     },
+    mounted: function(){
+        console.log(this.prevPgTop, this.prevPgLeft);
+        this.pgTop = this.prevPgTop;
+        this.pgLeft = this.prevPgLeft;
+        let pg = document.getElementById('pg').style;
+        pg.top = `${this.pgTop}px`;
+        pg.left = `${this.pgLeft}px`;
+    },
     created: function(){
     window.addEventListener('keydown',this.grassControl);
     },
     beforeDestroy: function(){
         //window.removeEventListener('keydown',this.grassControl);
     },
-    props: {},
     methods:{
+        blockElemControl(key){
+            for(let i = 0; i<this.blockObj.length; i++){
+                if(key == 'w')
+                    if(
+                        this.pgTop - 20 >= this.blockObj[i].endY
+                        && this.pgLeft <= this.blockObj[i].endX
+                        && this.pgLeft >= this.blockObj[i].startX
+                    )
+                        return true;
+                if(key == 's')
+                    if(
+                        this.pgTop + 20 >= this.blockObj[i].startY 
+                        && this.pgLeft <= this.blockObj[i].endX
+                        && this.pgLeft >= this.blockObj[i].startX
+                    )
+                        return true;
+                if(key == 'a')
+                    if(
+                        this.pgLeft - 20 <= this.blockObj[i].endX
+                        &&this.pgLeft - 20 >= this.blockObj[i].startX
+                        &&this.pgTop <= this.blockObj[i].endY
+                        &&this.pgTop >= this.blockObj[i].startY
+                    )
+                        return true;
+                if(key == 'd')
+                    if(
+                        this.pgLeft + 20 >= this.blockObj[i].startX
+                        &&this.pgLeft + 20 <= this.blockObj[i].endX
+                        &&this.pgTop <= this.blockObj[i].endY
+                        &&this.pgTop >= this.blockObj[i].startY
+                    )
+                        return true;
+            }
+
+            return false;
+        },
         grassControl(){
         let pg = document.getElementById('pg').style;
         if(event.key == 'w'){
             if(this.pgTop != 0){
-                if(this.walk == "top_2.png")
-                    this.walk = "top_1.png";
-                else
-                    this.walk = "top_2.png";
-                this.pgTop -=20;
-                pg.top = `${this.pgTop}px`;
+                if(this.blockElemControl('w')){
+                    this.walk = "top_0.png";
+                } else {
+                    if(this.walk == "top_2.png")
+                        this.walk = "top_1.png";
+                    else
+                        this.walk = "top_2.png";
+                    this.pgTop -=20;
+                    this.prevPgPos = true;
+                    pg.top = `${this.pgTop}px`;
+                }
             } else{
                 this.walk = "top_0.png";
             }
         }
         if(event.key == 's'){
-            if(this.pgTop != 640 - 20){
-                if(this.walk == "bottom_2.png")
-                    this.walk = "bottom_1.png";
-                else
-                    this.walk = "bottom_2.png";
-                this.pgTop +=20;
-                pg.top = `${this.pgTop}px`;
+            if(this.pgTop != 640 - 40){
+                if(this.blockElemControl('s')){
+                    this.walk = "bottom_0.png";
+                } else {
+                    if(this.walk == "bottom_2.png")
+                        this.walk = "bottom_1.png";
+                    else
+                        this.walk = "bottom_2.png";
+                    this.pgTop +=20;
+                    this.prevPgPos = true;
+                    pg.top = `${this.pgTop}px`;
+                }
             } else{
                 this.walk = "bottom_0.png";
             }
         }
         if(event.key == 'a'){
             if(this.pgLeft != 0){
-                if(this.walk == "left_2.png")
-                    this.walk = "left_1.png";
-                else
-                    this.walk = "left_2.png";
-                this.pgLeft -=20;
-                pg.left = `${this.pgLeft}px`;
+                if(this.blockElemControl('a')){
+                    this.walk = "left_0.png";
+                } else {
+                    if(this.walk == "left_2.png")
+                        this.walk = "left_1.png";
+                    else
+                        this.walk = "left_2.png";
+                    this.pgLeft -=20;
+                    this.prevPgPos = true;
+                    pg.left = `${this.pgLeft}px`;
+                }
             } else{
                 this.walk = "left_0.png";
             }
         }
         if(event.key == 'd'){
             if(this.pgLeft != 800 - 20){
-                if(this.walk == "right_2.png")
-                    this.walk = "right_1.png";
-                else
-                    this.walk = "right_2.png";
-                this.pgLeft +=20;
-                pg.left = `${this.pgLeft}px`;
+                if(this.blockElemControl('d')){
+                    this.walk = "right_0.png";
+                } else {
+                    if(this.walk == "right_2.png")
+                        this.walk = "right_1.png";
+                    else
+                        this.walk = "right_2.png";
+                    this.pgLeft +=20;
+                    this.prevPgPos = true;
+                    pg.left = `${this.pgLeft}px`;
+                }
             } else{
                 this.walk = "right_0.png";
             }
@@ -144,18 +258,21 @@ export default {
         for(let i=0; i<this.grassElem.length; i++){
         let startGrassX = this.grassElem[i].left;
         let endGrassX = this.grassElem[i].left + this.grassElem[i].w - 20;
-        let startGrassY = this.grassElem[i].top;
-        let endGrassY = this.grassElem[i].top + this.grassElem[i].h - 20;
+        let startGrassY = this.grassElem[i].top - 20;
+        let endGrassY = this.grassElem[i].top + this.grassElem[i].h - 40;
         if((this.pgTop >= startGrassY && this.pgTop <= endGrassY)
-         && (this.pgLeft >= startGrassX && this.pgLeft <= endGrassX)){
+         && (this.pgLeft >= startGrassX && this.pgLeft <= endGrassX)
+         &&this.prevPgPos == true){
             console.log('è sull erba');
-            let random = Math.floor(Math.random()*11);
-            console.log(random);
-            if(random == 6){
+            this.prevPgPos = false;
+            let random = Math.floor(Math.random()*21);
+            let random2 = Math.floor(Math.random()*21);
+            if(random == random2){
                 window.removeEventListener('keydown',this.grassControl);
                 this.pokeFindend = 'poke-finded';
                 setTimeout(() => {
-                    this.$emit('pokeFinded');
+                    console.log('oasso',this.pgLeft, this.pgTop);
+                    this.$emit('pokeFinded',this.pgLeft, this.pgTop);
                 }, 3499);
                 }
             break;
@@ -173,16 +290,8 @@ export default {
     background-color: rgb(115, 155, 4);;
 }
 
-[class*="grass-camp"]{
+.grass-camp,.block-camp{
     position: absolute;
-}
-
-.main-field{
-    position: absolute;
-    display: flex;
-    flex-wrap: wrap;
-    top: 0;
-    left: 0;
 }
 
 .ground{

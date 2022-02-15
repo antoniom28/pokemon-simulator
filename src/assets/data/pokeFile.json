@@ -10,11 +10,11 @@
             "speed": 140,
             "moveSet": [
                 {
-                    "name": "leaf",
+                    "name": "shuriken erboso",
                     "pp": 5,
                     "totpp": 5,
                     "color": "set-box-grass",
-                    "special": null,
+                    "special": "shuriken erboso",
                     "damage": 30,
                     "type": "Grass"
                 },
@@ -28,11 +28,11 @@
                     "type": "Ground"
                 },
                 {
-                    "name": "action",
+                    "name": "pioggia di foglie",
                     "pp": 15,
                     "totpp": 15,
                     "color": "set-box-bug",
-                    "special": null,
+                    "special": "pioggia di foglie",
                     "damage": 30,
                     "type": "Bug"
                 },
