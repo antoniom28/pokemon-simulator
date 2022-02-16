@@ -15,7 +15,7 @@
             :style="{top: `${elem.top}px`, left: `${elem.left}px`}" 
             class="block-camp"
         >
-            <BlockElem :grassW="elem.w" :grassH="elem.h" />
+            <BlockElem :grassW="elem.w" :grassH="elem.h" :type="elem.name"/>
         </div>
 
 
@@ -48,48 +48,93 @@ export default {
             pgTop: 0,
             blockObj: [
                 {
-                    top: 500,
-                    left: 20,
+                    name: "house1.png",
+                    top: 60,
+                    left: 340,
                     w: 100,
-                    h: 100,
-                    startX: 20 + 20, 
-                    endX: 20 + 100 - 40, 
-                    startY: 500 + 40, 
-                    endY: 500 + 100 - 20,
+                    h: 120,
+                    startX: 340, 
+                    endX: 340 + 100 - 20, 
+                    startY: 60 - 20, 
+                    endY: 60 + 120 - 20,
                 },
                 {
+                    name: "house1.png",
+                    top: 60,
+                    left: 440,
+                    w: 100,
+                    h: 120,
+                    startX: 440, 
+                    endX: 440 + 100 - 20, 
+                    startY: 60 - 20, 
+                    endY: 60 + 120 - 20,
+                },
+                {
+                    name: "house1.png",
+                    top: 60,
+                    left: 540,
+                    w: 100,
+                    h: 120,
+                    startX: 540, 
+                    endX: 540 + 100 - 20, 
+                    startY: 60 - 20, 
+                    endY: 60 + 120 - 20,
+                },
+                {
+                    name: "tree.png",
                     top: 300,
                     left: 260,
                     w: 100,
                     h: 100,
-                    startX: 260 + 20, 
-                    endX: 260 + 100 - 40, 
-                    startY: 300 + 40, 
+                    startX: 260, 
+                    endX: 260 + 100 - 20, 
+                    startY: 300 - 20, 
                     endY: 300 + 100 - 20,
                 },
                 {
+                    name: "tree.png",
                     top: 300,
                     left: 380,
                     w: 100,
                     h: 100,
-                    startX: 380 + 20, 
-                    endX: 380 + 100 - 40, 
-                    startY: 300 + 40, 
+                    startX: 380, 
+                    endX: 380 + 100 - 20, 
+                    startY: 300 - 20, 
                     endY: 300 + 100 - 20,
                 },
                 {
+                    name: "tree.png",
                     top: 20,
                     left: 120,
                     w: 100,
                     h: 100,
-                    startX: 120 + 20, 
-                    endX: 120 + 100 - 40, 
-                    startY: 20 + 40, 
+                    startX: 120, 
+                    endX: 120 + 100 - 20, 
+                    startY: 20 - 20, 
                     endY: 20 + 100 - 20,
+                },
+                {
+                    name: "wood_fence.png",
+                    top: 560,
+                    left: 520,
+                    w: 100,
+                    h: 20,
+                    startX: 520, 
+                    endX: 520 + 100 - 20, 
+                    startY: 560 - 20, 
+                    endY: 560 + 20 - 20,
                 },
                 
             ],
             grassElem: [
+                {   
+                    col: 17,
+                    row: 8,
+                    top: 20,
+                    left: 320,
+                    w: 20 * 17,
+                    h: 20 * 8,
+                },
                 {   
                     col: 10,
                     row: 6,
@@ -115,19 +160,11 @@ export default {
                     h: 20 * 4,
                 },
                 {   
-                    col: 8,
+                    col: 7,
                     row: 2,
                     top: 600,
                     left: 500,
-                    w: 20 * 8,
-                    h: 20 * 2,
-                },
-                {   
-                    col: 2,
-                    row: 2,
-                    top: 20,
-                    left: 500,
-                    w: 20 * 2,
+                    w: 20 * 7,
                     h: 20 * 2,
                 },
             ]
@@ -152,30 +189,28 @@ export default {
             for(let i = 0; i<this.blockObj.length; i++){
                 if(key == 'w')
                     if(
-                        this.pgTop - 20 >= this.blockObj[i].endY
+                        this.pgTop - 20 == this.blockObj[i].endY
                         && this.pgLeft <= this.blockObj[i].endX
                         && this.pgLeft >= this.blockObj[i].startX
                     )
                         return true;
                 if(key == 's')
                     if(
-                        this.pgTop + 20 >= this.blockObj[i].startY 
+                        this.pgTop + 20 == this.blockObj[i].startY 
                         && this.pgLeft <= this.blockObj[i].endX
                         && this.pgLeft >= this.blockObj[i].startX
                     )
                         return true;
                 if(key == 'a')
                     if(
-                        this.pgLeft - 20 <= this.blockObj[i].endX
-                        &&this.pgLeft - 20 >= this.blockObj[i].startX
+                        this.pgLeft - 20 == this.blockObj[i].endX
                         &&this.pgTop <= this.blockObj[i].endY
                         &&this.pgTop >= this.blockObj[i].startY
                     )
                         return true;
                 if(key == 'd')
                     if(
-                        this.pgLeft + 20 >= this.blockObj[i].startX
-                        &&this.pgLeft + 20 <= this.blockObj[i].endX
+                        this.pgLeft + 20 == this.blockObj[i].startX
                         &&this.pgTop <= this.blockObj[i].endY
                         &&this.pgTop >= this.blockObj[i].startY
                     )

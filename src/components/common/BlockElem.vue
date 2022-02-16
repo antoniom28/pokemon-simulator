@@ -1,7 +1,7 @@
 <template>
     <div class="fill-block">
-        <div class="div-block" :style="{width: `${grassW}px`}" >
-            <img src="../../assets/img/block-elem/tree.png" alt="">
+        <div class="div-block" :style="{width: `${grassW}px` , height: `${grassH}px`} " >
+            <img :src="require('../../assets/img/block-elem/' + type)" alt="">
         </div>
     </div>
 </template>
@@ -15,6 +15,7 @@ export default {
     props: {
         grassW: Number,
         grassH: Number,
+        type: String,
     },
     methods: {},
 }
@@ -23,6 +24,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/style/partials/variables.scss';
 .fill-block{
+    //background-color: red;
 
     img{
     width: 100%;
